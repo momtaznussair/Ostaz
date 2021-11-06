@@ -20,7 +20,7 @@
 					<a class="new nav-link full-screen-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="header-icon-svgs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg></a>
 				</div>
 				<div class="dropdown main-profile-menu nav nav-item nav-link">
-					@if (false) {{--Auth('admin')->user()->avatar--}}
+					@if (Auth('admin')->user()->avatar)
 						<a class="profile-user d-flex" href=""><img alt="" src="{{asset('storage/' . Auth('admin')->user()->avatar)}}""></a>
 					@else
 						<a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></a>
@@ -29,19 +29,19 @@
 						<div class="main-header-profile bg-primary p-3">
 							<div class="d-flex wd-100p">
 								<div class="main-img-user">
-								@if (false) {{-- Auth('admin')->user()->avatar --}}
+								@if (Auth('admin')->user()->avatar)
 									<a class="profile-user d-flex" href=""><img alt="" src="{{asset('storage/' . Auth('admin')->user()->avatar)}}""></a>
 								@else
 									<a class="profile-user d-flex" href=""><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}"></a>
 								@endif
 								</div>
 								<div class="mr-3 my-auto">
-									{{-- <h6 class="ml-2">{{Auth('admin')->user()->name}}</h6> --}}
+									<h6 class="ml-2">{{Auth('admin')->user()->name}}</h6>
 								</div>
 							</div>
 						</div>
-						<a class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="bx bx-log-out"></i>{{__('login.Sign Out')}}</a>
-						<form action="#" method="POST" id="logout-form">
+						<a class="dropdown-item" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="bx bx-log-out"></i>{{__('Logout')}}</a>
+						<form action="{{route('admin.logout')}}" method="POST" id="logout-form">
 							@csrf
 						</form>
 					</div>

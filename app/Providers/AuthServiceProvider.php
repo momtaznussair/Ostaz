@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+          // Implicitly grant "Super Admin" role all permissions
+        // This works in the app by using gate-related functions like auth()->user->can() and @can()
+        Gate::before(function ($admin, $ability) {
+            return $admin->hasRole('Super Admin') ? true : null;
+        });
+
+        // default password rules
+        Password::defaults(function () {
+            $rule = Password::min(8);
+    
+            return $this->app->isProduction()
+                        ? $rule->mixedCase()->uncompromised()
+                        : $rule;
+        });
     }
 }

@@ -1,3 +1,9 @@
 {
-    "Main" : "Main"
+    "Main" : "Main",
+    "Login" : "Login",
+    "E-mail" : "E-mail",
+    "Password" : "Password",
+    "Remember Me" : "Remember Me",
+    "The provided credentials do not match our records." : "The provided credentials do not match our records.",
+    "Logout" : "Logout"
 }

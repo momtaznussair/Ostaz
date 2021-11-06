@@ -1,3 +1,9 @@
 {
-    "Main" : "الرئيسية"
+    "Main" : "الرئيسية",
+    "Login" : "تسجيل الدخول",
+    "E-mail" : "البريد الإلكتروني",
+    "Password" : "كلمة السر",
+    "Remember Me" : "تذكرني",
+    "The provided credentials do not match our records." : "خطأ في كلمة المرور أو البريدالإلكتروني",
+    "Logout" : "تسجيل خروج"
 }

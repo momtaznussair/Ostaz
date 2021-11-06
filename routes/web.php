@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Auth\AuthController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -9,7 +12,7 @@ Route::get('/', function () {
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ],
 function()
 {
@@ -18,14 +21,23 @@ function()
     Route::group([
         'prefix' => 'admin',
         'namespace' => 'Admin',
-
+        'as' => 'admin.',        
     ],
     function ()
     {
 	/** ADD ALL Admin ROUTES INSIDE THIS GROUP **/
 
-    Route::view('/', 'admin.home');
-        
+    //Authenticated admins routes
+    Route::middleware(['admin.auth'])->group(function () {
+        Route::view('/', 'admin.home')->name('home');
+        Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+        //end of admin auth routes
     });
-	
+    //guest admin routes
+    Route::middleware(['admin.guest'])->group(function () {
+        Route::view('login', 'admin.auth.login')->name('login');
+        //end of admin gust routes
+    });
+	/** End Of Admin ROUTES GROUP **/
+    });
 });
