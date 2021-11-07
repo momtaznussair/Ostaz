@@ -5,5 +5,13 @@
     "Password" : "Password",
     "Remember Me" : "Remember Me",
     "The provided credentials do not match our records." : "The provided credentials do not match our records.",
-    "Logout" : "Logout"
+    "Logout" : "Logout",
+    "Forgotton your password ?" : "Forgotton your password ?",
+    "Reset Password" : "Reset Password",
+    "Please enter you email adress below and we will send you a link to reset your password ." : "Please enter you email adress below and we will send you a link to reset your password .",
+    "Email is required!" : "Email is required!",
+    "The Email Address format is not valid." : "The Email Address format is not valid.",
+    "Please enter your password !" : "Please enter your password !",
+    "New Password" : "New Password",
+    "Confirm Password" : "Confirm Password"
 }

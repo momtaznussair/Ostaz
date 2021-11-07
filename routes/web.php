@@ -36,8 +36,15 @@ function()
     //guest admin routes
     Route::middleware(['admin.guest'])->group(function () {
         Route::view('login', 'admin.auth.login')->name('login');
+
+        Route::view('forgotton-password', 'admin.auth.forgotten-password')->name('forgotten-password');
+        Route::post('forgotton-password', [AuthController::class, 'sendResetLink'])->name('send-rest-link');
+        
         //end of admin gust routes
     });
 	/** End Of Admin ROUTES GROUP **/
     });
 });
+
+Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('password-reset', [AuthController::class, 'restPassword'])->name('password.update');

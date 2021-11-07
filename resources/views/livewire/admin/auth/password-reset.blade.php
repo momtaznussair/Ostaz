@@ -14,8 +14,10 @@
                                 </div>
                                 @endif
                                 
-                                <h5 class="card-title mg-b-20 mx-auto">{{__('Login')}}</h5>
-                                <form wire:submit.prevent="login" method="POST">
+                                <h5 class="card-title mg-b-20 mx-auto">{{__('Reset Password')}}</h5>
+                                <input type="hidden" name="token" value="$token">
+                                <form action="{{route('password.update')}}" method="POST">
+                                    @csrf
                                     <div class="form-group">
                                         <label>{{__('E-mail')}}</label>
                                         <input wire:model="email" id="email" type="email"
@@ -29,34 +31,34 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>{{__('Password')}}</label>
+                                        <label>{{__('New Password')}}</label>
 
                                         <input wire:model="password" id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror"
-                                            name="password" autocomplete="current-password">
+                                            name="password">
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
-                                        <div class="form-group row">
-                                            <div class="mx-auto">
-                                                    <input wire:model="rememberMe" type="checkbox"
-                                                        name="remember" id="remember"
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{__('Confirm Password')}}</label>
 
-                                                    <label class="mt-3" for="remember">
-                                                        {{ __('Remember Me') }}
-                                                    </label>
-                                            </div>
-                                        </div>
+                                        <input type="password"
+                                            class="form-control @error('password_confirmation') is-invalid @enderror"
+                                            name="password_confirmation">
+
+                                        @error('password_confirmation')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <button type="submit" class="btn btn-main-primary btn-block mt-4">
                                         {{ __('Login') }}
                                     </button>
-                                    <div class="row mt-3">
-                                        <a class="mx-auto" href="{{route('admin.forgotten-password')}}">{{__('Forgotton your password ?')}}</a>
-                                    </div>
                                 </form>
                             </div>
                         </div>

@@ -5,5 +5,13 @@
     "Password" : "كلمة السر",
     "Remember Me" : "تذكرني",
     "The provided credentials do not match our records." : "خطأ في كلمة المرور أو البريدالإلكتروني",
-    "Logout" : "تسجيل خروج"
+    "Logout" : "تسجيل خروج",
+    "Forgotton your password ?" : "نسيت كلمة المرور ؟",
+    "Reset Password" : "تغيير كلمة المرور",
+    "Please enter you email adress below and we will send you a link to reset your password ." : "الرجاء إدخال بريدك الإلكتروني وسيتم إرسال رابط لتغيير كلمة المرور.",
+    "Email is required!" : "الرجاء إدخال البريد الإلكتروني !",
+    "The Email Address format is not valid." : "الرجاء إدخال بريد إلكتروني صحيح.",
+    "Please enter your password !" : "الرجاء إدخال كلمة المرور !",
+    "New Password" : "كلمة المرور الجديدة",
+    "Confirm Password" : "تأكيد كلمةالمرور"
 }
