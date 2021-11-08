@@ -18,7 +18,7 @@ Ostaz - home
 @section('content')
 				<!-- row -->
 				<div class="row">
-
+					
 				</div>
 				<!-- row closed -->
 			</div>

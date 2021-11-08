@@ -1,9 +1,9 @@
 @extends('layouts.master2')
 
 @section('title')
-   {{__('Login')}}
+   {{__('Forgotten password')}}
 @endsection
 
 @section('content')
-    @livewire('admin.auth.forgotten-password')
+    @livewire('admin.auth.forgot-password')
 @endsection

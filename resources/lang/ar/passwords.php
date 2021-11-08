@@ -14,7 +14,7 @@ return [
     */
 
     'reset' => 'تم تغيير كلمة المرور!',
-    'sent' => 'تم إرسال الرابط لتغيير كلمة المرورز',
+    'sent' => 'تم إرسال الرابط لتغيير كلمة المرور.',
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
     'user' => "البريد الإلكتروني الذي أدخلته لا ينتمي لأي حساب لدينا!",

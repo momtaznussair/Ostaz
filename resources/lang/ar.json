@@ -6,12 +6,21 @@
     "Remember Me" : "تذكرني",
     "The provided credentials do not match our records." : "خطأ في كلمة المرور أو البريدالإلكتروني",
     "Logout" : "تسجيل خروج",
-    "Forgotton your password ?" : "نسيت كلمة المرور ؟",
+    "Forgot your password ?" : "نسيت كلمة المرور ؟",
     "Reset Password" : "تغيير كلمة المرور",
     "Please enter you email adress below and we will send you a link to reset your password ." : "الرجاء إدخال بريدك الإلكتروني وسيتم إرسال رابط لتغيير كلمة المرور.",
     "Email is required!" : "الرجاء إدخال البريد الإلكتروني !",
     "The Email Address format is not valid." : "الرجاء إدخال بريد إلكتروني صحيح.",
     "Please enter your password !" : "الرجاء إدخال كلمة المرور !",
     "New Password" : "كلمة المرور الجديدة",
-    "Confirm Password" : "تأكيد كلمةالمرور"
+    "Confirm Password" : "تأكيد كلمةالمرور",
+    "Forgotten password" : "إعادة تعيين كلمة المرور",
+    "Reset" : "تغيير",
+    "Email Password Reset Link" : "إرسال رابط لتعيين كلمة المرور",
+    "You are receiving this email because we received a password reset request for your account." : "تم إرسال هذا البريد بناءاً على طلبكم لإعادة تعيين كلمة مرور الحساب خاصتكمز",
+    "Hello!" : "مرحباً!",
+    "No Further Actions Required if you didn't request this." : "الرجاء تجاهل هذه الرسالة إذا لم تقم بهذا الطلب.",
+    "Thank you for using Ostaz!" : "شكراً لإستخدامكم أستاذ!"
+
+    
 }
