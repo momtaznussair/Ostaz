@@ -2,6 +2,8 @@
 <title> 
     @yield('title')
 </title>
+<!--Internal  Font Awesome -->
+<link href="{{URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
 <!-- Favicon -->
 <link rel="icon" href="{{URL::asset('assets/img/brand/favicon.png')}}" type="image/x-icon"/>
 <!-- Icons css -->

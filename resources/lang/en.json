@@ -1,5 +1,6 @@
 {
     "Main" : "Main",
+    "Ostaz -  Admin Panel" : "Ostaz - Admin Panel",
     "Login" : "Login",
     "E-mail" : "E-mail",
     "Password" : "Password",
@@ -20,5 +21,24 @@
     "You are receiving this email because we received a password reset request for your account." : "You are receiving this email because we received a password reset request for your account.",
     "Hello!" : "Hello!",
     "No Further Actions Required if you didn't request this." : "No Further Actions Required if you didn't request this.",
-    "Thank you for using Ostaz!" : "Thank you for using Ostaz!"
+    "Thank you for using Ostaz!" : "Thank you for using Ostaz!",
+    "Profile" : "Profile",
+    "Roles" : "Roles",
+    "Name" : "Name",
+    "Operations" : "Operations",
+    "Add New" : "Add New",
+    "Edit" : "Edit",
+    "Delete" : "Delete",
+    "All" : "All",
+    "Confirm" : "Confirm",
+    "Cancel" : "Cancel",
+    "Back" : "Back",
+    "Permissions" : "Permissions",
+    "Select All" : "Select All",
+    "Deselect All" : "Deselect All",
+    "Created Successfully!" : "Created Successfully!",
+    "Changes Saved!" : "Changes Saved!",
+    "Unknown error, we could't Complete the Operation!" : "Unknown error, we could't Complete the Operation!",
+    "Are you sure you wanna delete?" : "Are you sure you wanna delete?",
+    "Deleted successfully!" : "Deleted successfully!"
 }

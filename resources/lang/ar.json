@@ -1,5 +1,6 @@
 {
     "Main" : "الرئيسية",
+    "Ostaz - Admin Panel" : "أستاذ - لوحة التحكم",
     "Login" : "تسجيل الدخول",
     "E-mail" : "البريد الإلكتروني",
     "Password" : "كلمة السر",
@@ -17,10 +18,27 @@
     "Forgotten password" : "إعادة تعيين كلمة المرور",
     "Reset" : "تغيير",
     "Email Password Reset Link" : "إرسال رابط لتعيين كلمة المرور",
-    "You are receiving this email because we received a password reset request for your account." : "تم إرسال هذا البريد بناءاً على طلبكم لإعادة تعيين كلمة مرور الحساب خاصتكمز",
+    "You are receiving this email because we received a password reset request for your account." : "تم إرسال هذا البريد بناءاً على طلبكم لإعادة تعيين كلمة مرور الحساب خاصتكم.",
     "Hello!" : "مرحباً!",
     "No Further Actions Required if you didn't request this." : "الرجاء تجاهل هذه الرسالة إذا لم تقم بهذا الطلب.",
-    "Thank you for using Ostaz!" : "شكراً لإستخدامكم أستاذ!"
-
-    
+    "Thank you for using Ostaz!" : "شكراً لإستخدامكم أستاذ!",
+    "Profile" : "الحساب الشخصي",
+    "Roles" : "أدوار المشرفين",
+    "Name" : "الاسم",
+    "Operations" : "الإجراءات",
+    "Add New" : "إضافة جديد",
+    "Edit" : "تعديل",
+    "Delete" : "حذف",
+    "All" : "الكل",
+    "Confirm" : "تأكيد",
+    "Cancel" : "إالغاء",
+    "Back" : "رجوع",
+    "Permissions" : "الصلاحيات",
+    "Select All" : "تحديد الكل",
+    "Deselect All" : "عدم تحديد الكل",
+    "Created Successfully!" : "تم الإضافة بنجاح!",
+    "Changes Saved!" : "تم حفظ التعديلات!",
+    "Unknown error, we could't Complete the Operation!" : "خطأ غير معلوم , لم نتمكن من إتمام العملية!",
+    "Are you sure you wanna delete?" : "هل أنت متأكد من عملية الحذف؟",
+    "Deleted successfully!" : "تم الحذف بنجاح!"
 }

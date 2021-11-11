@@ -31,5 +31,38 @@
 <!-- custom js -->
 <script src="{{URL::asset('assets/js/custom.js')}}"></script><!-- Left-menu js-->
 <script src="{{URL::asset('assets/plugins/side-menu/sidemenu.js')}}"></script>
+<!--Internal  Notify js -->
+<script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
+{{-- alpine js --}}
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 {{-- livewire scripts --}}
 @livewireScripts
+
+<script>
+    Livewire.on('success', (message) => {
+        $('.modal').modal('hide');
+        notif({
+            msg: message,
+            type: "success"
+        });
+    });
+
+    Livewire.on('failed', (message) => {
+        notif({
+            msg: message,
+            type: "danger"
+        });
+    });
+</script>
+{{-- success message --}}
+@if (session()->has('success'))
+<script>
+    window.onload = function() {
+        notif({
+            msg: "{{session()->get('success')}}",
+            type: "success"
+        });
+    }
+</script>
+@endif
