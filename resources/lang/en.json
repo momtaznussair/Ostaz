@@ -40,5 +40,14 @@
     "Changes Saved!" : "Changes Saved!",
     "Unknown error, we could't Complete the Operation!" : "Unknown error, we could't Complete the Operation!",
     "Are you sure you wanna delete?" : "Are you sure you wanna delete?",
-    "Deleted successfully!" : "Deleted successfully!"
+    "Deleted successfully!" : "Deleted successfully!",
+    "Save" : "Save",
+    "Delete Image" : "Delete Image",
+    "Personal Information" : "Personal Information",
+    "Phone" : "Phone",
+    "chaneg Image" : "chaneg Image",
+    "Sure?" : "Sure?",
+    "Image Deleted!" : "Image Deleted!",
+    "Unknown Error, We couldn't save image!" : "Unknown Error, We couldn't save image!",
+    "Current Password" : "Current Password"
 }

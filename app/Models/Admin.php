@@ -15,7 +15,11 @@ class Admin extends Authenticatable implements CanResetPassword
     use HasFactory, Notifiable, HasRoles, PasswordsCanResetPassword;
 
     protected $fillable = [
-        'password'
+        'password',
+        'avatar',
+        'name',
+        'email',
+        'phone'
     ];
     public function sendPasswordResetNotification($token)
     {

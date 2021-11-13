@@ -4,7 +4,8 @@
             {{-- <div class="card"> --}}
                 <div class="card-body">
                     {{-- change language --}}
-                    @include('partials.change-locale')
+                            @include('partials.change-locale')
+                    </div>
                     <div class="row">
                         <div class="col-md-10 col-lg-8 col-xl-6 mx-auto d-block">
                             <div class="card card-body pd-20 pd-md-40 border shadow-none">
@@ -59,7 +60,7 @@
                                         {{ __('Login') }}
                                     </button>
                                     <div class="row mt-3">
-                                        <a class="mx-auto" href="{{route('admin.forget-password-form')}}">{{__('Forgotton your password ?')}}</a>
+                                        <a class="mx-auto" href="{{route('admin.forget-password-form')}}">{{__('Forgot your password ?')}}</a>
                                     </div>
                                 </form>
                             </div>

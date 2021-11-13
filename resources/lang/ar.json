@@ -3,7 +3,7 @@
     "Ostaz - Admin Panel" : "أستاذ - لوحة التحكم",
     "Login" : "تسجيل الدخول",
     "E-mail" : "البريد الإلكتروني",
-    "Password" : "كلمة السر",
+    "Password" : "كلمة المرور",
     "Remember Me" : "تذكرني",
     "The provided credentials do not match our records." : "خطأ في كلمة المرور أو البريدالإلكتروني",
     "Logout" : "تسجيل خروج",
@@ -40,5 +40,14 @@
     "Changes Saved!" : "تم حفظ التعديلات!",
     "Unknown error, we could't Complete the Operation!" : "خطأ غير معلوم , لم نتمكن من إتمام العملية!",
     "Are you sure you wanna delete?" : "هل أنت متأكد من عملية الحذف؟",
-    "Deleted successfully!" : "تم الحذف بنجاح!"
+    "Deleted successfully!" : "تم الحذف بنجاح!",
+    "Save" : "تأكيد",
+    "Delete Image" : "حذف الصورة",
+    "Personal Information" : "المعلومات الشخصية",
+    "Phone" : "رقم الهاتف",
+    "chaneg Image" : "تغيير الصورة",
+    "Sure?" : "متأكد؟",
+    "Image Deleted!" : "تم حذف الصورة!",
+    "Unknown Error, We couldn't save image!" : "غير معلوم, لم نتمكن من حفظ الصورة!",
+    "Current Password" : "كلمة المرور الحالية"
 }

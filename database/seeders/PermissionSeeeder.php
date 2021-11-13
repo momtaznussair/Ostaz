@@ -34,9 +34,9 @@ class PermissionSeeeder extends Seeder
                     ['name' => $model .'_show', 'guard_name' => 'admin'],
                 ]);
             }
-        
-        // create permissions for Role Model
-        $rolePermissions = [
+
+         // create permissions for Role Model
+         $rolePermissions = [
             'Role_access',
             'Role_create',
             'Role_edit',
@@ -50,5 +50,7 @@ class PermissionSeeeder extends Seeder
                 'guard_name' => 'admin'
             ]);
         }
+        
+       
     }
 }
