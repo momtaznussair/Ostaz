@@ -10,13 +10,12 @@
 
             <div class="modal-body">
                 <p>{{__('Are you sure you wanna delete?')}}</p><br>
-                {{ Form::text('name', $name,['class' => 'form-control', 'id' => 'name', 'readonly' => 'on']) }}
+                {!! Form::text('name', $name, ['class' => 'form-control', 'readonly']) !!}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Cancel')}}</button>
                 {!! Form::submit(__('Confirm'), ['class' => 'btn btn-danger']) !!}
             </div>
-
             {!! Form::close() !!}
         </div>
     </div>

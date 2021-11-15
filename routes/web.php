@@ -38,6 +38,10 @@ function()
         Route::view('roles', 'admin.roles.index')->name('roles.index');
         Route::view('roles/create', 'admin.roles.create')->name('roles.create');
         Route::view('roles/{role}', 'admin.roles.edit')->name('roles.edit');
+        //admins
+        Route::view('admins', 'admin.admins.admins')->name('admins');
+        //categories
+        Route::view('categories', 'admin.categories.categories')->name('categories');
         //end of admin auth routes
     });
     //guest admin routes

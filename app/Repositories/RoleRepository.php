@@ -7,7 +7,7 @@ use App\Contracts\RoleRepositoyInterface;
 
 class RoleRepository implements RoleRepositoyInterface{
 
-    public function getAll()
+    public function getAll(string $keyword = '')
     {
        return Role::paginate(10);
     }
@@ -47,5 +47,15 @@ class RoleRepository implements RoleRepositoyInterface{
             return true;
         }
         return false;
+    }
+
+    public function getTrashed()
+    {
+        # code...
+    }
+
+    public function restore($id)
+    {
+        # code...
     }
 }

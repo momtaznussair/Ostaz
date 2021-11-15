@@ -22,7 +22,7 @@ class CreateAdminSeeder extends Seeder
             'email' => 'momtaznussair97@gmail.com',
             'password' => bcrypt('momtaznussair'),
             'phone' => '01015447889',
-            'status_id' => Status::where('name->en', 'Active')->first()->id
+            'active' => true
         ]);
 
         // creating super admin role

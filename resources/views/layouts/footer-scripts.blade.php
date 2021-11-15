@@ -25,6 +25,22 @@
 <script src="{{URL::asset('assets/plugins/sidebar/sidebar-custom.js')}}"></script>
 <!-- Eva-icons js -->
 <script src="{{URL::asset('assets/js/eva-icons.min.js')}}"></script>
+<!--Internal  Datepicker js -->
+<script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+<!--Internal  jquery.maskedinput js -->
+<script src="{{URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+<!--Internal  spectrum-colorpicker js -->
+<script src="{{URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
+<!-- Internal Select2.min js -->
+<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+<!--Internal  jquery-simple-datetimepicker js -->
+<script src="{{URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
+<!-- Ionicons js -->
+<script src="{{URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+<!-- Internal form-elements js -->
+<script src="{{URL::asset('assets/js/form-elements.js')}}"></script>
+<!-- Internal Modal js-->
+<script src="{{URL::asset('assets/js/modal.js')}}"></script>
 @yield('js')
 <!-- Sticky js -->
 <script src="{{URL::asset('assets/js/sticky.js')}}"></script>
@@ -53,6 +69,10 @@
             msg: message,
             type: "danger"
         });
+    });
+    
+    window.livewire.on('hideModal', () => {
+        $('.modal').modal('hide');
     });
 </script>
 {{-- success message --}}

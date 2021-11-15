@@ -81,6 +81,4 @@ class UpdateProfile extends Component
         //store it in database
         return $path;
     }
-
-    //todo: clean this shit
 }

@@ -14,6 +14,40 @@
 							<span class="side-menu__label">{{__('Main')}}</span>
 						</a>
 					</li>
+
+					@can('Admin_access')
+					<li class="slide">
+						<a class="side-menu__item" data-toggle="slide">
+						<i class="fas fa-user-shield" style="color: gray; font-size:1.3rem;"></i>
+						<span class="side-menu__label mx-2">{{__('Admins')}}</span>
+						<i class="angle fe fe-chevron-down"></i></a>
+		
+						<ul class="slide-menu">
+								<li><a class="slide-item" href="{{ route('admin.admins') }}">{{__('Admins')}}</a></li>
+		
+							@can('Role_access')
+								<li><a class="slide-item" href="{{ route('admin.roles.index') }}">{{__('Roles')}}</a></li>
+							@endcan
+
+							<li><a class="slide-item" href="#" title="{{__('Trashed')}}"><i class="fas fa-trash mx-2"></i></a></li>
+						</ul>
+					</li>
+					@endcan
+
+					@can('Category_access')
+					<li class="slide">
+						<a class="side-menu__item" data-toggle="slide">
+						<i class="si si-layers" style="color: gray; font-size:1.3rem;"></i>
+						<span class="side-menu__label mx-2">{{__('Categories')}}</span>
+						<i class="angle fe fe-chevron-down"></i></a>
+		
+						<ul class="slide-menu">
+							<li><a class="slide-item" href="{{ route('admin.categories') }}">{{__('Categories')}}</a></li>
+							<li><a class="slide-item" href="#" title="{{__('Trashed')}}"><i class="fas fa-trash mx-2"></i></a></li>
+						</ul>
+					</li>
+					@endcan
+
 				</ul>
 			</div>
 		</aside>

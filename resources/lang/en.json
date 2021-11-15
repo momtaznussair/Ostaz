@@ -3,6 +3,7 @@
     "Ostaz -  Admin Panel" : "Ostaz - Admin Panel",
     "Login" : "Login",
     "E-mail" : "E-mail",
+    "Image" : "Image",
     "Password" : "Password",
     "Remember Me" : "Remember Me",
     "The provided credentials do not match our records." : "The provided credentials do not match our records.",
@@ -49,5 +50,18 @@
     "Sure?" : "Sure?",
     "Image Deleted!" : "Image Deleted!",
     "Unknown Error, We couldn't save image!" : "Unknown Error, We couldn't save image!",
-    "Current Password" : "Current Password"
+    "Current Password" : "Current Password",
+    "Admins" : "Admins",
+    "Age" : "Age",
+    "Gender" : "Gender",
+    "Status" : "Status",
+    "Archive" : "Archive",
+    "Active" : "Active",
+    "Suspended" : "Suspended",
+    "Pending" : "Pending",
+    "Trashed" : "Trashed",
+    "Restore" : "Restore",
+    "Categories" : "Categories",
+    "Search..." : "Search...",
+    "No results found." : "No results found."
 }
