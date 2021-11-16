@@ -20,9 +20,7 @@
                         <td>{{$category->name}}</td>
                         <td>
                             @can('Category_edit')
-                                <a  
-                                    wire:click="restore({{$category->id}})" class="btn btn-sm btn-info"
-                                    title="{{__('Restore')}}"><i class="fas fa-trash-restore tx-white"></i></a> 
+                                
                             @endcan
                         </td>
                     </tr>

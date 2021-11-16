@@ -7,9 +7,12 @@ use App\Models\Course;
 
 class CourseRepository implements CourseRepositoryInterface{
 
-    public function getAll(string $keyword = '')
+    public function getAll(string $search = '', bool $trashed = false, bool $active = true)
     {
-       return  Course::search('name', $keyword)->paginate();
+       return  Course::search('name', $search)
+       ->isTrashed($trashed)
+       ->isActive($active)
+       ->paginate();
     }
 
     public function getById($id){
@@ -33,11 +36,6 @@ class CourseRepository implements CourseRepositoryInterface{
     public function remove($Course)
     {
       return $Course->delete();
-    }
-
-    public function getTrashed(string $keyword = '')
-    {
-        return  Course::search('name', $keyword)->onlyTrashed()->paginate();
     }
 
     public function restore($Course)

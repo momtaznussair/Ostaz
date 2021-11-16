@@ -4,18 +4,23 @@ namespace App\Http\Livewire\Admin\Courses;
 
 use App\Models\Course;
 use Livewire\Component;
-use App\Models\Category;
+use Livewire\WithPagination;
 use App\Contracts\CourseRepositoryInterface;
 use App\Contracts\CategoryRepositoryInterface;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Courses extends Component
 {
-    public $search = '';
+    use WithPagination, AuthorizesRequests;
+    public $search = '', $trashed = false, $active = true;
     public $course, $name, $updateMode;
+    
     public function render(CourseRepositoryInterface $courseRepository, CategoryRepositoryInterface $category)
     {
+        $this->authorize('Course_access');
         return view('livewire.admin.courses.courses', [
-            'courses' => $courseRepository->getAll($this->search),
+            'courses' => $courseRepository
+            ->getAll($this->search, $this->trashed, $this->active),
             'categories' => $category->getAll()->pluck('name', 'id')
         ]);
     }
@@ -39,7 +44,7 @@ class Courses extends Component
        return $ruls;
     }
 
-    public function selectcourse(Course $course)
+    public function select(Course $course)
     {
        $this->resetValidation();
        $this->course = $course;
@@ -48,6 +53,7 @@ class Courses extends Component
 
     public function save(CourseRepositoryInterface $courseRepository)
     {
+        $this->authorize('Course_create');
         $this->updateMode = false;
         $this->validate();
         $courseRepository->add($this->course) && 
@@ -57,6 +63,7 @@ class Courses extends Component
 
     public function update(CourseRepositoryInterface $courseRepository)
     {
+       $this->authorize('Course_edit');
        $this->updateMode = true;
        $this->validate();
        $courseRepository->update($this->course->id, $this->course) && 
@@ -66,14 +73,23 @@ class Courses extends Component
 
     public function delete(CourseRepositoryInterface $courseRepository)
     {
+        $this->authorize('Course_delete');
         $courseRepository->remove($this->course) &&
         $this->emit('success', __('Deleted successfully!'));
     }
 
     public function toggleActive(Bool $active, CourseRepositoryInterface $courseRepository)
     {
+       $this->authorize('Course_edit');
         $courseRepository->toggleActive($this->course, $active) && 
         $this->emit('success', __('Changes Saved!'));
+    }
+
+    public function restore($course, CourseRepositoryInterface $courseRepository)
+    {
+        $this->authorize('Course_delete');
+        $courseRepository->restore($course) &&
+        $this->emit('success', __('Item restored!'));
     }
 
 }

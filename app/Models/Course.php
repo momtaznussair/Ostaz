@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\Scopes\ActiveScope;
+use App\Traits\Scopes\IsTrashed;
 use App\Traits\Scopes\Searchable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
-    use HasFactory, Searchable, SoftDeletes;
+    use HasFactory, Searchable, SoftDeletes, IsTrashed, ActiveScope;
 
     protected $fillable = [
         'name',

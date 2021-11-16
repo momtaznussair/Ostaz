@@ -1,9 +1,6 @@
 <div class="card-body">
-    <div class="row d-flex justify-content-end px-4">
-        <div class="col-2">
-                <input wire:model='search' type="search" placeholder="{{__('Search...')}}" class="form-control mb-3 h-6">
-        </div>
-    </div>
+   {{-- filters --}}
+   <x-filters />
     <div class="table-responsive">
         <table id="rolesTable" class="table text-md-nowrap">
             <thead>
@@ -22,25 +19,35 @@
                         <td>{{$course->name}}</td>
                         <td>
                             <div class="custom-control custom-switch">
-                                <input wire:change="toggleActive({{$course->active}})" wire:click="selectcourse({{$course->id}})"
-                                type="checkbox" {{ $course->active ? 'checked' : '' }} class="custom-control-input" id="{{$course->id}}">
+                                <input wire:change="toggleActive({{$course->active}})" wire:click="select({{$course->id}})"
+                                type="checkbox" {{ $course->active ? 'checked' : '' }} {{ $course->deleted_at ? 'disabled' : '' }} class="custom-control-input" id="{{$course->id}}">
                                 <label class="custom-control-label" for="{{$course->id}}"></label>
                             </div>
                         </td>
                         <td>{{$course->category->name}}</td>
                         <td>
-                            @can('Course_edit')
+                            @empty($course->deleted_at)
+                                @can('Course_edit')
                                 <a  
-                                    wire:click="selectcourse({{$course->id}})"
+                                    wire:click="select({{$course->id}})"
                                     data-toggle="modal" href="#update" class="btn btn-sm btn-info"
                                     title="{{__('Edit')}}"><i class="las la-pen"></i></a> 
-                            @endcan
+                                @endcan
+                            @endempty
                             @can('Course_delete')
+
+                            @if ($course->deleted_at)
+                                <a  
+                                    wire:click="restore({{$course->id}})" class="btn btn-sm btn-info"
+                                    title="{{__('Restore')}}"><i class="fas fa-trash-restore tx-white"></i>
+                                </a> 
+                                @else
                                 <a
-                                wire:click="selectcourse({{$course->id}})"
+                                wire:click="select({{$course->id}})"
                                 class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                 data-toggle="modal" href="#delete" title="{{__('Delete')}}"><i
                                 class="las la-trash"></i></a>
+                            @endif
                             @endcan     
                         </td>
                     </tr>
@@ -54,7 +61,7 @@
     </div>
     <div class="row mx-3">{{$courses->links()}} </div>
     {{-- modal --}}
+    <x-crud-by-name-modal mode="delete" title="{{__('Delete')}}"/>
     <x-create-or-update-course mode="save" title="{{__('Add New')}}" :categories="$categories"/>
     <x-create-or-update-course mode="update" title="{{__('Edit')}}" :categories="$categories"/>
-    <x-crud-by-name-modal mode="delete" title="{{__('Delete')}}"/>
 </div>

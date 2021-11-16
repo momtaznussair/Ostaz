@@ -7,9 +7,12 @@ use App\Models\Category;
 
 class CategoryRepository implements CategoryRepositoryInterface{
 
-    public function getAll(string $keyword = '')
+    public function getAll(string $search = '', bool $trashed = false, bool $active = true)
     {
-       return  Category::search('name', $keyword)->paginate();
+       return Category::search('name', $search)
+       ->isTrashed($trashed)
+       ->isActive($active)
+       ->paginate();
     }
 
     public function getById($id){

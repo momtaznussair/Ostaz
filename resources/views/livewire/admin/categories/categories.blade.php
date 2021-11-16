@@ -1,9 +1,5 @@
 <div class="card-body">
-    <div class="row d-flex justify-content-end px-4">
-        <div class="col-2">
-                <input wire:model='search' type="search" placeholder="{{__('Search...')}}" class="form-control mb-3 h-6">
-        </div>
-    </div>
+    <x-filters />
     <div class="table-responsive">
         <table id="rolesTable" class="table text-md-nowrap">
             <thead>
@@ -22,23 +18,34 @@
                         <td>
                             <div class="custom-control custom-switch">
                                 <input wire:change="toggleActive({{$category->active}})" wire:click="selectCategory({{$category->id}})"
-                                type="checkbox" {{ $category->active ? 'checked' : '' }} class="custom-control-input" id="{{$category->id}}">
+                                type="checkbox" {{ $category->active ? 'checked' : '' }} {{ $category->deleted_at ? 'disabled' : '' }} class="custom-control-input" id="{{$category->id}}">
                                 <label class="custom-control-label" for="{{$category->id}}"></label>
                             </div>
                         </td>
                         <td>
                             @can('Category_edit')
-                                <a  
+                            @empty($category->deleted_at)
+                                 <a  
                                     wire:click="selectCategory({{$category->id}})"
                                     data-toggle="modal" href="#update" class="btn btn-sm btn-info"
                                     title="{{__('Edit')}}"><i class="las la-pen"></i></a> 
+                            @endempty
+                               
                             @endcan
                             @can('Category_delete')
-                                <a
-                                wire:click="selectCategory({{$category->id}})"
-                                class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                data-toggle="modal" href="#delete" title="{{__('Delete')}}"><i
-                                class="las la-trash"></i></a>
+                                @if ($category->deleted_at)
+                                    <a  
+                                        wire:click="restore({{$category->id}})" class="btn btn-sm btn-info"
+                                        title="{{__('Restore')}}"><i class="fas fa-trash-restore tx-white"></i>
+                                    </a> 
+                                    @else
+                                    <a
+                                        wire:click="selectCategory({{$category->id}})"
+                                        class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                        data-toggle="modal" href="#delete" title="{{__('Delete')}}"><i
+                                        class="las la-trash"></i>
+                                    </a>
+                                @endif
                             @endcan     
                         </td>
                     </tr>
