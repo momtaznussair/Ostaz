@@ -63,5 +63,9 @@
     "Restore" : "Restore",
     "Categories" : "Categories",
     "Search..." : "Search...",
-    "No results found." : "No results found."
+    "No results found." : "No results found.",
+    "Item restored!" : "Item restored!",
+    "Courses" : "Courses",
+    "Category" : "Category",
+    "Select one" : "Select one"
 }

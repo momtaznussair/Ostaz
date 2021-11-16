@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Contracts\AdminRepositoryInterface;
 use App\Contracts\CategoryRepositoryInterface;
+use App\Contracts\CourseRepositoryInterface;
 use App\Contracts\RoleRepositoyInterface;
 use App\Repositories\AdminRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CourseRepository;
 use App\Repositories\RoleRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +27,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AdminRepositoryInterface::class, AdminRepository::class);
         //Category
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
+        //course
+        $this->app->bind(CourseRepositoryInterface::class, CourseRepository::class);
     }
 
     /**

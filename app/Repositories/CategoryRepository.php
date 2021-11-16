@@ -34,13 +34,13 @@ class CategoryRepository implements CategoryRepositoryInterface{
       return $category->delete();
     }
 
-    public function getTrashed()
+    public function getTrashed(string $keyword = '')
     {
-        # code...
+        return  Category::search('name', $keyword)->onlyTrashed()->paginate();
     }
 
-    public function restore($id)
+    public function restore($category)
     {
-        # code...
+        return Category::withTrashed()->find($category)->restore();
     }
 }

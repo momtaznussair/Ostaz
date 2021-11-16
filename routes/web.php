@@ -42,6 +42,10 @@ function()
         Route::view('admins', 'admin.admins.admins')->name('admins');
         //categories
         Route::view('categories', 'admin.categories.categories')->name('categories');
+        Route::view('categories/trashed', 'admin.categories.trashed')->name('categories-trashed');
+        // courses
+        Route::view('courses', 'admin.courses.courses')->name('courses');
+        Route::view('courses/trashed', 'admin.courses.trashed')->name('courses-trashed');
         //end of admin auth routes
     });
     //guest admin routes

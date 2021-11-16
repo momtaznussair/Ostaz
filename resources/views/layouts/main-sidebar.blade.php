@@ -43,7 +43,21 @@
 		
 						<ul class="slide-menu">
 							<li><a class="slide-item" href="{{ route('admin.categories') }}">{{__('Categories')}}</a></li>
-							<li><a class="slide-item" href="#" title="{{__('Trashed')}}"><i class="fas fa-trash mx-2"></i></a></li>
+							<li><a class="slide-item" href="{{route('admin.categories-trashed')}}" title="{{__('Trashed')}}"><i class="fas fa-trash mx-2"></i></a></li>
+						</ul>
+					</li>
+					@endcan
+
+					@can('Course_access')
+					<li class="slide">
+						<a class="side-menu__item" data-toggle="slide">
+						<i class="si si-layers" style="color: gray; font-size:1.3rem;"></i>
+						<span class="side-menu__label mx-2">{{__('Courses')}}</span>
+						<i class="angle fe fe-chevron-down"></i></a>
+		
+						<ul class="slide-menu">
+							<li><a class="slide-item" href="{{ route('admin.courses') }}">{{__('Courses')}}</a></li>
+							<li><a class="slide-item" href="{{route('admin.courses-trashed')}}" title="{{__('Trashed')}}"><i class="fas fa-trash mx-2"></i></a></li>
 						</ul>
 					</li>
 					@endcan

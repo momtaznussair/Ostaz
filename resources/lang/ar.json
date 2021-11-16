@@ -61,7 +61,11 @@
     "Pending" : "قيد الإنتظار",
     "Trashed" : "المحذوف",
     "Restore" : "إستعادة",
-    "Categories" : "تصنيفات البرامج",
+    "Categories" : "الأقسام",
     "Search..." : "ابحث..",
-    "No results found." : "لم يتم العثور على نتائج."
+    "No results found." : "لم يتم العثور على نتائج.",
+    "Item restored!" : "تم استعادة العنصر!",
+    "Courses" : "البرامج",
+    "Category" : "القسم",
+    "Select one" : "حدد إختيار..."
 }
