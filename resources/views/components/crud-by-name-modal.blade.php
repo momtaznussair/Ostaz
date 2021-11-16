@@ -13,7 +13,7 @@
                     <div class="col">
                         {!! Form::label('name', __('Name'), ['class' => 'label-required']) !!}
                         {!! Form::text('name', null, ['wire:model' => 'name', 'id' => 'name', 'class' => ['form-control']]) !!}
-                        @error('name') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div>
+                        @error('name') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div>cd
                         @enderror
                     </div>
                 </div>

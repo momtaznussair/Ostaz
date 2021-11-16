@@ -55,10 +55,4 @@
     <x-crud-by-name-modal mode="save" title="{{__('Add New')}}"/>
     <x-crud-by-name-modal mode="delete" title="{{__('Delete')}}"/>
     <x-crud-by-name-modal mode="update" title="{{__('Edit')}}"/>
-
-
-    {{-- @isset($selectedAdmin)
-    <x-delete-alert :name="$selectedAdmin->name"/>
-    <livewire:admin.admins.edit :admin="$selectedAdmin" />
-    @endisset --}}
 </div>
