@@ -67,5 +67,9 @@
     "Item restored!" : "تم استعادة العنصر!",
     "Courses" : "البرامج",
     "Category" : "القسم",
-    "Select one" : "حدد إختيار..."
+    "Select one" : "حدد إختيار...",
+    "Countries" : "الدول",
+    "Cities" : "المدن",
+    "Country" : "الدولة",
+    "City" : "المدينة"
 }

@@ -15,25 +15,6 @@
 						</a>
 					</li>
 
-					@can('Admin_access')
-					<li class="slide">
-						<a class="side-menu__item" data-toggle="slide">
-						<i class="fas fa-user-shield" style="color: gray; font-size:1.3rem;"></i>
-						<span class="side-menu__label mx-2">{{__('Admins')}}</span>
-						<i class="angle fe fe-chevron-down"></i></a>
-		
-						<ul class="slide-menu">
-								<li><a class="slide-item" href="{{ route('admin.admins') }}">{{__('Admins')}}</a></li>
-		
-							@can('Role_access')
-								<li><a class="slide-item" href="{{ route('admin.roles.index') }}">{{__('Roles')}}</a></li>
-							@endcan
-
-							<li><a class="slide-item" href="#" title="{{__('Trashed')}}"><i class="fas fa-trash mx-2"></i></a></li>
-						</ul>
-					</li>
-					@endcan
-
 					@can('Category_access')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('admin.categories') }}">
@@ -48,6 +29,42 @@
 						<a class="side-menu__item" href="{{ route('admin.courses') }}">
 							<i class="fas fa-compact-disc side-menu__icon"></i>
 							<span class="side-menu__label mt-2">{{__('Courses')}}</span>
+						</a>
+					</li>
+					@endcan
+
+					@can('Country_access')
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('admin.countries') }}">
+							<i class="fas fa-globe-europe side-menu__icon"></i>
+							<span class="side-menu__label mt-2">{{__('Countries')}}</span>
+						</a>
+					</li>
+					@endcan
+
+					@can('City_access')
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('admin.cities') }}">
+							<i class="fas fa-city side-menu__icon"></i>
+							<span class="side-menu__label mt-2">{{__('Cities')}}</span>
+						</a>
+					</li>
+					@endcan
+
+					@can('Admin_access')
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('admin.admins') }}">
+							<i class="fas fa-user-shield side-menu__icon"></i>
+							<span class="side-menu__label mt-2">{{__('Admins')}}</span>
+						</a>
+					</li>
+					@endcan
+
+					@can('Role_access')
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('admin.roles.index') }}">
+							<i class="fas fa-user-tag side-menu__icon"></i>
+							<span class="side-menu__label mt-2">{{__('Roles')}}</span>
 						</a>
 					</li>
 					@endcan

@@ -44,6 +44,10 @@ function()
         Route::view('categories', 'admin.categories.categories')->name('categories');
         // courses
         Route::view('courses', 'admin.courses.courses')->name('courses');
+        // countries
+         Route::view('countries', 'admin.countries.countries')->name('countries');
+         // cities
+         Route::view('cities', 'admin.cities.cities')->name('cities');
         //end of admin auth routes
     });
     //guest admin routes

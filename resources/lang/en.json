@@ -67,5 +67,9 @@
     "Item restored!" : "Item restored!",
     "Courses" : "Courses",
     "Category" : "Category",
-    "Select one" : "Select one"
+    "Select one" : "Select one",
+    "Countries" : "Countries",
+    "Cities" : "Cities",
+    "City" : "City",
+    "Country" : "Country"
 }

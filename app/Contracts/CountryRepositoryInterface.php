@@ -2,6 +2,6 @@
 
 namespace App\Contracts;
 
-interface CategoryRepositoryInterface extends RepositoryInterface{
+interface CountryRepositoryInterface extends RepositoryInterface{
     // Category Specific Methods
 }

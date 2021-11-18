@@ -26,7 +26,7 @@
                             <a wire:click="selectToDelete({{$role}})"
                             class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                              data-toggle="modal"
-                            href="#deleteModal" title="{{__('Delete')}}"><i class="las la-trash"></i></a>	
+                            href="#delete" title="{{__('Delete')}}"><i class="las la-trash"></i></a>	
                         @endcan
                         @endif 
                     </td>
@@ -36,7 +36,5 @@
         </table>
     </div>
     <div class="row mx-3">{{$roles->links()}} </div>
-    @isset($selectedTodelete)
-    <x-delete-alert :name="$selectedTodelete['name']"/>
-    @endisset
+    <x-crud-by-name-modal :name="$name" mode="delete" title="delete" />
 </div>

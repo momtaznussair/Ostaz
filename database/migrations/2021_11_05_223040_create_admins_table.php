@@ -22,7 +22,7 @@ class CreateAdminsTable extends Migration
             $table->string('phone', 15);
             $table->string('password');
             $table->string('avatar')->nullable(false)->default('admins/default.jpg');
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

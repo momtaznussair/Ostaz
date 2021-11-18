@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Categories extends Component
 {
     use WithPagination, AuthorizesRequests;
+    protected $paginationTheme = 'bootstrap';
     public $name;
     public $trashed = false, $active = true, $search = '';
     public Category $category;

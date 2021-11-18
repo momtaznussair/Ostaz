@@ -2,15 +2,19 @@
 
 namespace App\Providers;
 
-use App\Contracts\AdminRepositoryInterface;
-use App\Contracts\CategoryRepositoryInterface;
-use App\Contracts\CourseRepositoryInterface;
-use App\Contracts\RoleRepositoyInterface;
-use App\Repositories\AdminRepository;
-use App\Repositories\CategoryRepository;
-use App\Repositories\CourseRepository;
+use App\Repositories\CityRepository;
 use App\Repositories\RoleRepository;
+use App\Repositories\AdminRepository;
+use App\Repositories\CourseRepository;
+use App\Repositories\CountryRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\CategoryRepository;
+use App\Contracts\RoleRepositoyInterface;
+use App\Contracts\CityRepositoryInterface;
+use App\Contracts\AdminRepositoryInterface;
+use App\Contracts\CourseRepositoryInterface;
+use App\Contracts\CountryRepositoryInterface;
+use App\Contracts\CategoryRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -29,6 +33,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         //course
         $this->app->bind(CourseRepositoryInterface::class, CourseRepository::class);
+        //Country
+        $this->app->bind(CountryRepositoryInterface::class, CountryRepository::class);
+        //City
+        $this->app->bind(CityRepositoryInterface::class, CityRepository::class);
     }
 
     /**

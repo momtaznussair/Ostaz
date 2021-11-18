@@ -5,13 +5,15 @@ namespace App\Repositories;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use App\Contracts\AdminRepositoryInterface;
-use Illuminate\Support\Facades\Storage;
 
 class AdminRepository implements AdminRepositoryInterface{
 
-    public function getAll(string $keyword = '')
+    public function getAll(string $search = '', bool $trashed = false, bool $active = true)
     {
-        return Admin::paginate(10);
+       return Admin::search('name', $search)
+       ->isTrashed($trashed)
+       ->isActive($active)
+       ->paginate();
     }
 
     public function getById($id)
@@ -31,14 +33,21 @@ class AdminRepository implements AdminRepositoryInterface{
         return false;
     }
 
-    public function update($id, $data)
+    public function update($admin, $data)
     {
-        # code...
+        $data['avatar'] && $admin->avatar = $this->saveImage($data['avatar']);
+        $data['avatar'] && $admin->password = Hash::make($data['password']);
+        $admin->syncRoles($data['roles']);
+        return $admin->save();
     }
 
-    public function remove($id)
+    public function toggleActive($admin, bool $active){
+        return $admin->update(['active' => !$active]);
+    }
+
+    public function remove($admin)
     {
-       return Admin::find($id)->delete();
+       return $admin->delete();
     }
 
     private function saveImage($image)
@@ -46,13 +55,13 @@ class AdminRepository implements AdminRepositoryInterface{
         return $image->store('admins');
     }
 
-    public function getTrashed()
+    public function removeImage(Admin $admin)
     {
-        # code...
+        return $admin->update(['avatar' => 'admins/default.jpg']);
     }
 
-    public function restore($id)
+    public function restore($admin)
     {
-        # code...
+        return Admin::withTrashed()->find($admin)->restore();
     }
 }

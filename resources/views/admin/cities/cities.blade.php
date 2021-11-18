@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('title')
-	{{__('Admins')}}
+	{{__('Cities')}}
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">{{__('Admins')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Admins')}}</span>
+							<h4 class="content-title mb-0 my-auto">{{__('Cities')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('Cities')}}</span>
 						</div>
 					</div>
 				</div>
@@ -20,14 +20,14 @@
 						<div class="card mg-b-20">
 							<div class="card-header pb-0 mb-3">
 								<div class="d-flex justify-content-between">
-									@can('Admin_create')
+									@can('Country_create')
 										<div class="col-sm-6 col-md-4 col-xl-3">
 											<a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-fall" data-toggle="modal" href="#save")}}">{{__('Add New')}}</a>
 										</div>
 									@endcan									
 								</div>
 							</div>
-							@livewire('admin.admins.admins')
+							@livewire('admin.cities.cities')
 						</div>
 					</div>
 				</div>

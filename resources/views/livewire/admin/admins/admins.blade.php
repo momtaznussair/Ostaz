@@ -1,4 +1,5 @@
 <div class="card-body">
+    <x-filters />
     <div class="table-responsive">
         <table id="rolesTable" class="table text-md-nowrap">
             <thead>
@@ -9,54 +10,84 @@
                     <th class="border-bottom-0">{{__('E-mail')}}</th>
                     <th class="border-bottom-0">{{__('Phone')}}</th>
                     <th class="border-bottom-0">{{__('Roles')}}</th>
-                    <th class="border-bottom-0">{{__('Status')}}</th>
+                    <th class="border-bottom-0">{{__('Active')}}</th>
                     <th class="border-bottom-0">{{__('Operations')}}</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($admins as $admin)
+                @forelse ($admins as $Admin)
                     <tr>
-                        <td>{{$loop->iteration}}</td>
+                       <td>{{$loop->iteration}}</td>
+					   <td>
+						   <img alt="{{$Admin->name}}" src="{{asset('storage/' . $Admin->avatar)}}" style="width: 70px; height: 70px; border-radius:50%">
+					   </td>
+					   <td>{{$Admin->name}}</td>
+					   <td>{{$Admin->email}}</td>
+					   <td>{{$Admin->phone}}</td>
+					   <td>
+						   @foreach ($Admin->getRoleNames() as $role)
+							   <span class="badge badge-success p-1">{{ $role }}</span>
+						   @endforeach
+					   </td>
                         <td>
-                            <img alt="{{$admin->name}}" src="{{asset('storage/' . $admin->avatar)}}" style="width: 70px; height: 70px; border-radius:50%">
-                        </td>
-                        <td>{{$admin->name}}</td>
-                        <td>{{$admin->email}}</td>
-                        <td>{{$admin->phone}}</td>
-                        <td>
-                            @foreach ($admin->getRoleNames() as $role)
-                                <span class="badge badge-success p-1">{{ $role }}</span>
-                            @endforeach
+                            <div class="custom-control custom-switch">
+                                <input wire:change="toggleActive({{$Admin->active}})" wire:click="select({{$Admin}})"
+                                type="checkbox" {{ $Admin->active ? 'checked' : '' }} {{ $Admin->deleted_at ? 'disabled' : '' }} class="custom-control-input" id="{{$Admin->id}}">
+                                <label class="custom-control-label" for="{{$Admin->id}}"></label>
+                            </div>
                         </td>
                         <td>
-                            <x-account-status-badge :status="$admin->active" />
-                        </td>
-                        <td wire:click='Select({{$admin}})'>
                             @can('Admin_edit')
+                                @empty($Admin->deleted_at)
                                 <a  
-                                    data-toggle="modal" href="#editModal" class="btn btn-sm btn-info"
-                                    title="{{__('Edit')}}"><i class="las la-pen"></i></a> 
+                                    wire:click="select({{$Admin}})"
+                                    data-toggle="modal" href="#update" class="btn btn-sm btn-info"
+                                    title="{{__('Edit')}}"><i class="las la-pen"></i>
+                                </a> 
+                                @endempty
                             @endcan
-                            
                             @can('Admin_delete')
-                                {{-- we first check if there are more than one admin --}}
-                                @if ($admin->count() > 1)
-                                <a
-                                class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                data-toggle="modal" href="#deleteModal" title="{{__('modal.Delete')}}"><i
-                                    class="las la-trash"></i></a>
+                                @if ($Admin->deleted_at)
+                                    <a  
+                                        wire:click="restore({{$Admin}})" class="btn btn-sm btn-info"
+                                        title="{{__('Restore')}}"><i class="fas fa-trash-restore tx-white"></i>
+                                    </a> 
+                                    @else
+							        @if ($admin->count() > 1)
+                                    <a
+                                        wire:click="select({{$Admin}})"
+                                        class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                        data-toggle="modal" href="#delete" title="{{__('Delete')}}"><i
+                                        class="las la-trash"></i>
+                                    </a>
+                                    @endif
                                 @endif
-                            @endcan                                        
+                            @endcan     
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                <tr class="tx-center">
+                    <td colspan="8">{{__('No results found.')}}</td>
+                </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
     <div class="row mx-3">{{$admins->links()}} </div>
-    @isset($selectedAdmin)
-    <x-delete-alert :name="$selectedAdmin->name"/>
-    <livewire:admin.admins.edit :admin="$selectedAdmin" />
-    @endisset
-    @livewire('admin.admins.create')
+    {{-- modals --}}
+    <x-crud-by-name-modal :name="$name" :title="__('Delete')" mode="delete" />
+    <x-create-or-update-admin mode="update" :title="__('Edit')" :admin="$admin" :allRoles="$allRoles" :avatar="$avatar" />
+    <x-create-or-update-admin mode="save" :title="__('Add New')" :admin="$admin" :allRoles="$allRoles" :avatar="$avatar" />
+
 </div>
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#roles').select2();
+        $('#roles').on('change', function(e) {
+            let data = $('#roles').select2("val");
+            @this.set('roles', data);
+        });
+    });
+</script>
+@endsection

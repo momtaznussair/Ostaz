@@ -7,13 +7,9 @@ use App\Contracts\RoleRepositoyInterface;
 
 class RoleRepository implements RoleRepositoyInterface{
 
-    public function getAll(string $keyword = '')
+    public function getAll()
     {
        return Role::paginate(10);
-    }
-
-    public function getById($id){
-        # code...
     }
 
     public function add($data)

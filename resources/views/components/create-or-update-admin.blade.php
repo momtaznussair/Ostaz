@@ -1,6 +1,13 @@
+<div wire:ignore.self class="modal" id={{$mode}}>
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content modal-content-demo">
+            <div class="modal-header">
+                <h6 class="modal-title">{{$title}}</h6><button aria-label="Close" class="close" data-dismiss="modal" 
+                type="button"><span aria-hidden="true">&times;</span></button>
+            </div>
             <div class="modal-body">
-                {!! Form::open(['wire:submit.prevent' => 'submit']) !!}
-                {{-- image and active status --}}
+                {!! Form::open(['wire:submit.prevent' => $mode ]) !!}
+                {{-- image --}}
                 <div class="row main-profile-overview d-flex justify-content-center">
                     <div class="main-img-user profile-user">
                         <img alt="" src="{{ $avatar ? $avatar->temporaryUrl() : asset('storage/' . $admin->avatar) }}">
@@ -10,8 +17,7 @@
                         {!! Form::file('avatar', ['wire:model' => 'avatar', 'class' => 'd-none', 'id' => 'avatar']) !!}
                         {{-- delete image - in edit mode --}}
                         <div class="row d-flex justify-content-start" x-data="{confirm : false, deleted : false}">
-                            @error('avatar') <div class="tx-danger"><strong>{{ $message }}</strong></div>
-                            @enderror
+                            @error('avatar') <div class="tx-danger"><strong>{{ $message }}</strong></div>@enderror
                             {{-- delete  image button --}}
                             @if ($admin->avatar != 'admins/default.jpg')
                                 <a type="button" wire:click='confirmDelete' class="fas fa-eraser  tx-18 mx-3"
@@ -22,17 +28,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="row form-group d-flex justify-content-end mt-0">
-                    <div class="col-lg-3 mg-t-20 mg-lg-t-0 mx-5">
-                        {!! Form::checkbox('active', 1, true, ['wire:model' => 'admin.active', 'id' => 'active']) !!}
-                        {!! Form::label('active', __('Active'), ['class' => ['tx-success mx-1']]) !!}
-                    </div>
-                </div>
                 {{-- 1 name - email --}}
                 <div class="row form-group">
                     <div class="col">
-                        {!! Form::label('name', __('Name'), ['class' => 'label-required']) !!}
-                        {!! Form::text('name', null, ['wire:model' => 'admin.name', 'id' => 'name', 'class' => ['form-control']]) !!}
+                        {!! Form::label('admin_name', __('Name'), ['class' => 'label-required']) !!}
+                        {!! Form::text('name', null, ['wire:model' => 'admin.name', 'id' => 'admin_name', 'class' => ['form-control']]) !!}
                         @error('admin.name') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div>
                         @enderror
                     </div>
@@ -43,7 +43,7 @@
                         @enderror
                     </div>
                 </div>
-
+            
                 {{-- 2  password --}}
                 <div class="row form-group">
                     <div class="col">
@@ -57,7 +57,7 @@
                         {!! Form::password('password_confirmation', ['wire:model' => 'password_confirmation', 'id' => 'password_confirmation', 'class' => ['form-control']]) !!}
                     </div>
                 </div>
-
+            
                 {{-- 3 phone and roles --}}
                 <div class="row form-group">
                     <div class="col">
@@ -77,19 +77,9 @@
             </div>
             <div class="modal-footer">
                 <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">{{ __('cancel') }}</button>
-                <button  wire:click='submit' class="btn ripple btn-primary" type="submit">{{ __('confirm') }}</button>
+                <button class="btn ripple btn-primary" type="submit">{{ __('confirm') }}</button>
             </div>
             {!! Form::close() !!}
-            </div>
-            </div>
-            @section('js')
-                <script>
-                    $(document).ready(function() {
-                        $('#roles').select2();
-                        $('#roles').on('change', function(e) {
-                            let data = $('#roles').select2("val");
-                            @this.set('roles', data);
-                        });
-                    });
-                </script>
-            @endsection
+        </div>
+    </div>
+</div>

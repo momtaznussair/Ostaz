@@ -5,6 +5,9 @@ namespace App\Models;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\AdminResetPassword;
+use App\Traits\Scopes\ActiveScope;
+use App\Traits\Scopes\IsTrashed;
+use App\Traits\Scopes\Searchable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +16,7 @@ use Illuminate\Auth\Passwords\CanResetPassword as PasswordsCanResetPassword;
 
 class Admin extends Authenticatable implements CanResetPassword
 {
-    use HasFactory, Notifiable, HasRoles, PasswordsCanResetPassword,  SoftDeletes;
+    use HasFactory, Notifiable, HasRoles, PasswordsCanResetPassword,  SoftDeletes, Searchable, IsTrashed, ActiveScope;
 
     protected $fillable = [
         'password',
