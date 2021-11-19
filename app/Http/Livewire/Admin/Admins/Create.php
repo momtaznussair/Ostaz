@@ -14,7 +14,7 @@ class Create extends Component
 {
     use WithFileUploads,  AuthorizesRequests;
 
-    public $roles, $avatar, $password, $password_confirmation;
+    public $avatar, $password, $password_confirmation, $roles;
     public Admin $admin;
     public function render(RoleRepositoyInterface $roleRepository)
     {
@@ -40,15 +40,18 @@ class Create extends Component
         ];
     }
 
-    public function submit(AdminRepositoryInterface $adminRepository)
+    public function save(AdminRepositoryInterface $adminRepository)
     {
-        if($adminRepository->add($this->validate())){
-            $this->emit('hideModal');
-            $this->reset('avatar', 'roles', 'password', 'password_confirmation');
-            $this->admin = new Admin();
-            $this->emit('adminsUpdated');
-            return $this->emit('success', __('Created Successfully!'));
-        }
-        $this->emit('failed', __("Unknown error, we could't Complete the Operation!"));
+        $this->authorize('Admin_create');
+        $adminRepository->add($this->validate()) &&
+        $this->emitUp('changesSaved');
+        $this->emit('success', __('Created Successfully!'));
+        $this->resetAll();
+    }
+
+    public function resetAll()
+    {
+        $this->reset('roles', 'avatar', 'password', 'password_confirmation');
+        $this->admin = new Admin();
     }
 }

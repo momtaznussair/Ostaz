@@ -1,14 +1,14 @@
-<div wire:ignore.self class="modal" id={{$mode}}>
+<div wire:ignore.self class="modal" id="createOrUpdate">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content modal-content-demo">
             <div class="modal-header">
-                <h6 class="modal-title">{{$title}}</h6><button aria-label="Close" class="close" data-dismiss="modal" 
+                <h6 class="modal-title">{{$mode == 'create' ? __('Add New') : __('Edit')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" 
                 type="button"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                {!! Form::open(['wire:submit.prevent' => $mode ]) !!}
+                {!! Form::open(['wire:submit.prevent' => 'submit' ]) !!}
                 {{-- image --}}
-                <div class="row main-profile-overview d-flex justify-content-center">
+                <div class="row main-profile-overview d-flex justify-content-center mb-3">
                     <div class="main-img-user profile-user">
                         <img alt="" src="{{ $avatar ? $avatar->temporaryUrl() : asset('storage/' . $admin->avatar) }}">
                         <label for="avatar" class="fas fa-camera profile-edit" type="button"
@@ -100,6 +100,10 @@
         // reset select to roles field each time we select a new admin
         @this.on('changeRoles', (roles) => {
             $('#roles').val(null).trigger('change');
+        })
+
+        $('#createOrUpdate').on('hidden.bs.modal', function () {
+            @this.resetAll();
         })
     });
 </script>

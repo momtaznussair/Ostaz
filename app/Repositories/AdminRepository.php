@@ -16,29 +16,15 @@ class AdminRepository implements AdminRepositoryInterface{
        ->paginate();
     }
 
-    public function getById($id)
+    public function updateOrCreate($data)
     {
-        return Admin::find($id);
-    }
-
-    public function add($data)
-    {
-        $data['avatar'] &&  $data['admin']['avatar'] = $this->saveImage($data['avatar']);
-        $data['admin']['password'] = Hash::make($data['password']);
-        $admin = Admin::create($data['admin']);
-        if($admin){
-            $admin->syncRoles($data['roles']);
-            return true;
-        }
-        return false;
-    }
-
-    public function update($admin, $data)
-    {
-        $data['avatar'] && $admin->avatar = $this->saveImage($data['avatar']);
-        $data['avatar'] && $admin->password = Hash::make($data['password']);
-        $admin->syncRoles($data['roles']);
-        return $admin->save();
+        $data['avatar'] && $data['admin']['avatar'] = $this->saveImage($data['avatar']);
+        $data['password'] && $data['admin']['password'] = Hash::make($data['password']);
+        $admin = Admin::updateOrCreate(
+            ['email' => $data['admin']['email']], // condition
+            $data['admin'] // attributes
+        );
+        return $data['roles']  && $admin->syncRoles($data['roles']);
     }
 
     public function toggleActive($admin, bool $active){

@@ -32,7 +32,7 @@
                         <td>
                             <div class="custom-control custom-switch">
                                 <input wire:change="toggleActive({{$Admin->active}})" wire:click="select({{$Admin}})"
-                                type="checkbox" {{ $Admin->active ? 'checked' : '' }} {{ $Admin->deleted_at ? 'disabled' : '' }} class="custom-control-input" id="{{$Admin->id}}">
+                                type="checkbox" {{ $Admin->active ? 'checked' : '' }} {{ ($Admin->deleted_at || $admin->count() == 1) ? 'disabled' : '' }} class="custom-control-input" id="{{$Admin->id}}">
                                 <label class="custom-control-label" for="{{$Admin->id}}"></label>
                             </div>
                         </td>
@@ -40,8 +40,8 @@
                             @can('Admin_edit')
                                 @empty($Admin->deleted_at)
                                 <a  
-                                    wire:click="select({{$Admin}})"
-                                    data-toggle="modal" href="#update" class="btn btn-sm btn-info"
+                                    wire:click="select({{$Admin}}, true)" class="btn btn-sm btn-info text-white" type="button"
+                                    data-toggle="modal" href="#createOrUpdate"
                                     title="{{__('Edit')}}"><i class="las la-pen"></i>
                                 </a> 
                                 @endempty
@@ -74,20 +74,10 @@
         </table>
     </div>
     <div class="row mx-3">{{$admins->links()}} </div>
+
     {{-- modals --}}
+    @livewire('admin.admins.update-or-create-admin')
     <x-crud-by-name-modal :name="$name" :title="__('Delete')" mode="delete" />
-    <x-create-or-update-admin mode="update" :title="__('Edit')" :admin="$admin" :allRoles="$allRoles" :avatar="$avatar" />
-    <x-create-or-update-admin mode="save" :title="__('Add New')" :admin="$admin" :allRoles="$allRoles" :avatar="$avatar" />
+   
 
 </div>
-@section('js')
-<script>
-    $(document).ready(function() {
-        $('#roles').select2();
-        $('#roles').on('change', function(e) {
-            let data = $('#roles').select2("val");
-            @this.set('roles', data);
-        });
-    });
-</script>
-@endsection
