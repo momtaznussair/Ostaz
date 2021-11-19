@@ -10,10 +10,11 @@ use Spatie\Permission\Models\Role;
 
 class Roles extends Component
 {
-    protected $paginationTheme = 'bootstrap';
     use WithPagination, AuthorizesRequests;
+    protected $paginationTheme = 'bootstrap';
 
-    public $name, $role_id;
+    public Role $role;
+    public $name;
     
     public function render(RoleRepositoyInterface $roleRepository)
     {
@@ -23,17 +24,16 @@ class Roles extends Component
         ]);
     }
 
-    public function selectToDelete($role)
+    public function select(Role $role)
     {
-        $this->name = $role['name'];
-        $this->role_id = $role['id'];
+        $this->role = $role;
+        $this->name = $role->name;
     }
 
     public function delete(RoleRepositoyInterface $roleRepository)
     {
-        dd($this->role);
         $this->authorize('Role_delete');
-        $success = $roleRepository->remove($this->role_id);
+        $success = $roleRepository->remove($this->role->id);
         if($success){
            return $this->emit('success', __('Deleted successfully!'));
         }

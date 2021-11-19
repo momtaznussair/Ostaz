@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Cities extends Component
 {
     use WithPagination, AuthorizesRequests;
+    protected $paginationTheme = 'bootstrap';
     public $search = '', $trashed = false, $active = true;
     public $name, $allCitiesOfSelectedCountry = [];
     public City $city;
@@ -33,7 +34,7 @@ class Cities extends Component
     public function rules()
     {
        return [
-           'city.name' => 'required|string|max:255',
+           'city.name' => 'required|string|max:255|unique:cities,name',
            'city.country_id' => 'required|exists:countries,id'
        ];
     }
@@ -47,7 +48,7 @@ class Cities extends Component
         ->first()
         ->hydrateStates()
         ->states
-        ->sortBy('name')
+        ->sortBy('name.common')
         ->pluck('name')->toArray();
 
     }

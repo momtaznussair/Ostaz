@@ -23,7 +23,7 @@
                         @endcan
 
                         @can('Role_delete')
-                            <a wire:click="selectToDelete({{$role}})"
+                            <a wire:click="select({{$role}})"
                             class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                              data-toggle="modal"
                             href="#delete" title="{{__('Delete')}}"><i class="las la-trash"></i></a>	
@@ -35,6 +35,7 @@
             </tbody>
         </table>
     </div>
+    
     <div class="row mx-3">{{$roles->links()}} </div>
-    <x-crud-by-name-modal :name="$name" mode="delete" title="delete" />
+    <x-crud-by-name-modal :name="$name" mode="delete" :title="__('Delete')" />
 </div>

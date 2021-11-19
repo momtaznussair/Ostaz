@@ -71,5 +71,9 @@
     "Countries" : "Countries",
     "Cities" : "Cities",
     "City" : "City",
-    "Country" : "Country"
+    "Country" : "Country",
+    "Instructors" : "Instructors",
+    "Male" : "Male",
+    "Female" : "Female",
+    "Students" : "Students"
 }

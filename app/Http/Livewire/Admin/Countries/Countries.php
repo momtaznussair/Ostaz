@@ -14,6 +14,8 @@ use PragmaRX\Countries\Package\Countries as AllCountries;
 class Countries extends Component
 {
     use WithPagination, AuthorizesRequests;
+    protected $paginationTheme = 'bootstrap';
+
     public $trashed = false, $active = true, $search = '';
     public Country $country;
     public $name, $allCountries;
@@ -28,12 +30,12 @@ class Countries extends Component
 
 
     public function mount()    {
-       $this->allCountries = AllCountries::all()->pluck('name.common')->toArray();
+       $this->allCountries = AllCountries::sortBy('name.common')->all()->pluck('name.common')->toArray();
     }
 
     protected function rules()
     {
-        return [ 'name' => ['required', 'unique:countries,name', 
+        return [ 'name' => ['required', 'unique:countries,name|unique:countries,name', 
             Rule::in($this->allCountries)
         ] ];
     }

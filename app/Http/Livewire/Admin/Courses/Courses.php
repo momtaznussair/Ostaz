@@ -12,6 +12,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Courses extends Component
 {
     use WithPagination, AuthorizesRequests;
+    protected $paginationTheme = 'bootstrap';
+
     public $search = '', $trashed = false, $active = true;
     public $course, $name, $updateMode;
     

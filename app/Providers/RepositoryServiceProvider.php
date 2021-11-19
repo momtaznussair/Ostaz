@@ -15,6 +15,8 @@ use App\Contracts\AdminRepositoryInterface;
 use App\Contracts\CourseRepositoryInterface;
 use App\Contracts\CountryRepositoryInterface;
 use App\Contracts\CategoryRepositoryInterface;
+use App\Contracts\UserRepositoryInterface;
+use App\Repositories\UserRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -37,6 +39,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CountryRepositoryInterface::class, CountryRepository::class);
         //City
         $this->app->bind(CityRepositoryInterface::class, CityRepository::class);
+         //User
+         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
 
     /**

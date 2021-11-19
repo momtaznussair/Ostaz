@@ -14,11 +14,7 @@
                                 {{__('Name') . ' : '}}
                                 <span class="text-danger mx-2"> *</span>
                             </p>
-                            @error('name')
-                            <div class="tx-danger">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                            @enderror
+                            @error('name')<div class="tx-danger"><strong>{{ $message }}</strong></div>@enderror
                             {!! Form::text('name', null, array('class' => 'form-control', 'required' => 'true', 'wire:model' => 'name')) !!}
                         </div>
                     </div>
@@ -48,11 +44,12 @@
                             <span class="text-danger"> *</span>
                             </p>
                         </div>
-                        <div x-show="open" class="row">
+                        <div x-show="open" class="row tx-18 d-flex justify-content-md-between">
                             @foreach($allPermissions as $permission)
-                                <label class="tx-18 w-50">
-                                    {{ Form::checkbox('permissions[]', $permission->id, false, ['class' => 'name' , 'wire:model' => 'permissions']) }}
-                                    {{ $permission->name }}</label>
+                            <div class="form-check col-5">
+                                {!! Form::checkbox('permissions[]', $permission->id, false, ['wire:model' => 'permissions', 'id' => $permission->id, 'class' => 'form-check-input']) !!}
+                                {!! Form::label($permission->id, $permission->name, ['class' => 'form-check-label']) !!}
+                            </div>
                             @endforeach
                         </div>
                        </div>

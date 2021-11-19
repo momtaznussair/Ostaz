@@ -156,6 +156,7 @@ return [
     'attributes' => [
         'category_id'                 => 'Category',
         'country_id'                 => 'country',
+        'city_id'                 => 'city',
     ],
 
 ];

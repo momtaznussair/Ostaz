@@ -10,6 +10,7 @@ class CountryRepository implements CountryRepositoryInterface{
     public function getAll(string $search = '', bool $trashed = false, bool $active = true)
     {
        return Country::search('name', $search)
+       ->orderBy('name')
        ->isTrashed($trashed)
        ->isActive($active)
        ->paginate();
@@ -17,6 +18,11 @@ class CountryRepository implements CountryRepositoryInterface{
 
     public function getById($id){
         # code...
+    }
+
+    public function getCities($country_id)
+    {
+       return Country::find($country_id)->cities()->pluck('name', 'id');
     }
 
     public function add($data)

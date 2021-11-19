@@ -51,6 +51,22 @@
 					</li>
 					@endcan
 
+					@can('User_access')
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('admin.instructors') }}">
+							<i class="fas fa-chalkboard-teacher side-menu__icon"></i>
+							<span class="side-menu__label mt-2">{{__('Instructors')}}</span>
+						</a>
+					</li>
+
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('admin.students') }}">
+							<i class="fas fa-user-graduate side-menu__icon"></i>
+							<span class="side-menu__label mt-2">{{__('Students')}}</span>
+						</a>
+					</li>
+					@endcan
+
 					@can('Admin_access')
 					<li class="slide">
 						<a class="side-menu__item" href="{{ route('admin.admins') }}">

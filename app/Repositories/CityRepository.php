@@ -12,7 +12,7 @@ class CityRepository implements CityRepositoryInterface{
        return  City::search('name', $search)
        ->isTrashed($trashed)
        ->isActive($active)
-       ->paginate();
+       ->paginate(5);
     }
 
     public function getById($id){}

@@ -44,14 +44,4 @@ class RoleRepository implements RoleRepositoyInterface{
         }
         return false;
     }
-
-    public function getTrashed()
-    {
-        # code...
-    }
-
-    public function restore($id)
-    {
-        # code...
-    }
 }

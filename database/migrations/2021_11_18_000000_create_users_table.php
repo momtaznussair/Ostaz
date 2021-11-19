@@ -17,9 +17,17 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->boolean('active')->default(true);
+            $table->foreignId('city_id')->constrained();
+            $table->string('avatar')->default('users/default.jpg');
+            $table->unsignedInteger('age');
+            $table->string('phone');
+            $table->enum('gender', ['m', 'f']);
+            $table->enum('type', ['Instructor', 'Student']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

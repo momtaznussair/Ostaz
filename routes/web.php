@@ -48,6 +48,10 @@ function()
          Route::view('countries', 'admin.countries.countries')->name('countries');
          // cities
          Route::view('cities', 'admin.cities.cities')->name('cities');
+         // instructors
+         Route::view('instructors', 'admin.instructors.instructors')->name('instructors');
+         // students
+         Route::view('students', 'admin.students.students')->name('students');
         //end of admin auth routes
     });
     //guest admin routes

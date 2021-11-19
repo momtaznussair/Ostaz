@@ -2,6 +2,9 @@
 
 namespace App\Contracts;
 
+use App\Models\Country;
+
 interface CountryRepositoryInterface extends RepositoryInterface{
-    // Category Specific Methods
+    // Country Specific Methods
+    public function getCities($country);
 }

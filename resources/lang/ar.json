@@ -71,5 +71,9 @@
     "Countries" : "الدول",
     "Cities" : "المدن",
     "Country" : "الدولة",
-    "City" : "المدينة"
+    "City" : "المدينة",
+    "Instructors" : "المدربين",
+    "Male" : "ذكر",
+    "Female" : "أنثى",
+    "Students" : "الطلاب"
 }
