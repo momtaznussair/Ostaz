@@ -41,8 +41,8 @@
                              @empty($student->deleted_at)
                                  @can('User_edit')
                                  <a  
-                                     wire:click="select({{$student->id}})"
-                                     data-toggle="modal" href="#update" class="btn btn-sm btn-info"
+                                     wire:click="select({{$student->id}}, true)"
+                                     data-toggle="modal" href="#updateOrCreate" class="btn btn-sm btn-info"
                                      title="{{__('Edit')}}"><i class="las la-pen"></i></a> 
                                  @endcan
                              @endempty
@@ -72,12 +72,8 @@
          </table>
      </div>
      <div class="row mx-3">{{$students->links()}} </div>
-     {{-- modal --}}
-     <x-crud-by-name-modal mode="delete" title="{{__('Delete')}}"/>
+      {{-- modal --}}
+      <x-crud-by-name-modal mode="delete" title="{{__('Delete')}}"/>
 
-     <x-create-or-update-user mode="save" :title="__('Add New')" :user="$user" type="student" :avatar="$avatar"
-    :countries="$countries" :cities="$cities" />
-
-    <x-create-or-update-user mode="update" :title="__('Edit')" :user="$user" type="student" :avatar="$avatar"
-    :countries="$countries" :cities="$cities" />
+      @livewire('admin.users.update-or-create-user', ['userRole' => 'Student'])
  </div>

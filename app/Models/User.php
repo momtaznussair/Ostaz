@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use App\Traits\Scopes\ActiveScope;
+use App\Models\City;
 use App\Traits\Scopes\IsTrashed;
 use App\Traits\Scopes\Searchable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Traits\Scopes\ActiveScope;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -19,12 +20,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
         'active',
         'gender',
         'phone',
         'city_id',
-        'age'
+        'age',
+        'type'
     ];
 
     /**

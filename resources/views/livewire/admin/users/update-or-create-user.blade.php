@@ -1,14 +1,14 @@
-<div wire:ignore.self class="modal" id={{$mode}}>
+<div wire:ignore.self class="modal" id=updateOrCreate>
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content modal-content-demo">
             <div class="modal-header">
-                <h6 class="modal-title">{{$title}}</h6><button aria-label="Close" class="close" data-dismiss="modal" 
+                <h6 class="modal-title">{{$mode == 'create' ? __('Add New') : __('Edit')}}</h6><button aria-label="Close" class="close" data-dismiss="modal" 
                 type="button"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                {!! Form::open(['wire:submit.prevent' => $mode ]) !!}
+                {!! Form::open(['wire:submit.prevent' => 'submit' ]) !!}
                 {{-- image --}}
-                <div class="row main-profile-overview d-flex justify-content-center">
+                <div class="row main-profile-overview d-flex justify-content-center mb-3">
                     <div class="main-img-user profile-user">
                         <img alt="" src="{{ $avatar ? $avatar->temporaryUrl() : asset('storage/' . $user->avatar) }}">
                         <label for="avatar" class="fas fa-camera profile-edit" type="button"
@@ -62,7 +62,7 @@
                 <div class="row form-group">
                     <div class="col">
                         {!! Form::label('gender', __('Gender'), ['class' => ['label-required']]) !!}
-                        {!! Form::select('gender', ['' => __('Select one'),'m' => 'Male', 'f' => 'Female'], null, ['id' => 'gender', 'class' => ['form-control'], 'wire:model' => 'user.gender']) !!}
+                        {!! Form::select('gender', ['' => __('Select one'),'m' => 'Male', 'f' => 'Female'], null, ['wire:model' => 'user.gender', 'id' => 'gender', 'class' => ['form-control']]) !!}
                     @error('user.gender') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div> @enderror
                     </div>
                     <div class="col">
@@ -81,12 +81,12 @@
                  <div class="row form-group">
                     <div class="col">
                         {!! Form::label('country', __('Country'), ['class' => ['label-required']]) !!}
-                        {!! Form::select('country', Arr::prepend($countries, '' . __('Select one')), '', ['wire:model' => 'country', 'wire:change' => 'getCities' , 'id' => 'country', 'class' => ['form-control']]) !!}
+                        {!! Form::select('country', $countries, null, ['wire:model' => 'country', 'wire:change' => 'getCities' , 'id' => 'country', 'class' => ['form-control']]) !!}
                     @error('country') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div> @enderror
                     </div>
                     <div class="col">
                         {!! Form::label('city', __('City'), ['class' => ['label-required']]) !!}
-                        {!! Form::select('city', Arr::prepend($cities, '' . __('Select one')), null, ['wire:model' => 'user.city_id', 'id' => 'city', 'class' => ['form-control']]) !!}
+                        {!! Form::select('city', $cities, 'Select', ['wire:model' => 'user.city_id', 'id' => 'city', 'class' => ['form-control']]) !!}
                     @error('user.city_id') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div> @enderror
                     </div>
                 </div>
@@ -99,3 +99,10 @@
         </div>
     </div>
 </div>
+@section('js')
+<script>
+$('#updateOrCreate').on('hidden.bs.modal', function () {
+    @this.resetAll();
+})
+</script>
+@endsection

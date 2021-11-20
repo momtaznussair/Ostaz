@@ -22,7 +22,7 @@
 								<div class="d-flex justify-content-between">
 									@can('Admin_create')
 										<div class="col-sm-6 col-md-4 col-xl-3">
-											<a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-fall" data-toggle="modal" href="#save")}}">{{__('Add New')}}</a>
+											<a class="modal-effect btn btn-outline-primary btn-block" data-effect="effect-fall" data-toggle="modal" href="#updateOrCreate")}}">{{__('Add New')}}</a>
 										</div>
 									@endcan									
 								</div>

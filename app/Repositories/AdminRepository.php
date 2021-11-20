@@ -21,7 +21,7 @@ class AdminRepository implements AdminRepositoryInterface{
         $data['avatar'] && $data['admin']['avatar'] = $this->saveImage($data['avatar']);
         $data['password'] && $data['admin']['password'] = Hash::make($data['password']);
         $admin = Admin::updateOrCreate(
-            ['email' => $data['admin']['email']], // condition
+            ['id' => $data['admin']['id']], // condition
             $data['admin'] // attributes
         );
         return $data['roles']  && $admin->syncRoles($data['roles']);

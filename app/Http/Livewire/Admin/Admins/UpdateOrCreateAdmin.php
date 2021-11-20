@@ -42,6 +42,7 @@ class UpdateOrCreateAdmin extends Component
 
     public function rules(){
         $rules =  [
+            'admin.id' => 'nullable',
             'admin.name' => 'required|max:255|string',
             'admin.email' => 'required|email|max:255|unique:admins,email',
             'password' => ['required', 'confirmed', Password::defaults()],

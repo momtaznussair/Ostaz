@@ -8,17 +8,9 @@ use App\Contracts\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface{
 
-    public function getAll(string $search = '', bool $trashed = false, bool $active = true)
+    public function getAll(string $search = '', bool $trashed = false, bool $active = true, string $type)
     {
-       return User::search('name', $search)
-       ->isTrashed($trashed)
-       ->isActive($active)
-       ->paginate();
-    }
-
-    public function getAllByType(string $search = '', bool $trashed = false, bool $active = true, string $type)
-    {
-       return User::with('city:id,name')
+       return User::with('city')
        ->search('name', $search)
        ->where('type', $type)
        ->isTrashed($trashed)
@@ -26,23 +18,13 @@ class UserRepository implements UserRepositoryInterface{
        ->paginate();
     }
 
-    public function getById($id){
-        # code...
-    }
-
-    public function add($data)
-    {
+    public function updateOrCreate($data) {
         $data['avatar'] &&  $data['user']['avatar'] = $data['avatar']->store('users');
-        $data['user']['password'] = Hash::make($data['password']);
-        return User::create($data['user']);
-    }
-
-    public function update($user, $data)
-    {
-        dd($user->city_id);
-       $data['avatar'] && $user->avatar = $data['avatar']->store('users');
-       $data['password'] && $user->password = Hash::make($data['password']);
-       return $user->save();
+        $data['password'] && $data['user']['password'] = Hash::make($data['password']);
+        return User::updateOrCreate(
+            ['id' => $data['user']['id']], // condition
+            $data['user'] // attributes
+        );
     }
 
     public function toggleActive($user, bool $active){
@@ -54,13 +36,13 @@ class UserRepository implements UserRepositoryInterface{
       return $User->delete();
     }
 
-    public function getTrashed(string $keyword = '')
-    {
-        return  User::search('name', $keyword)->onlyTrashed()->paginate();
-    }
-
     public function restore($User)
     {
         return User::withTrashed()->find($User)->restore();
+    }
+
+    public function removeImage($user)
+    {
+        return $user->update(['avatar' => 'users/default.jpg']);
     }
 }
