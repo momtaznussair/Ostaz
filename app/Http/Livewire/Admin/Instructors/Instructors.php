@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Contracts\UserRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use PhpParser\Node\Expr\Cast\String_;
 
 class Instructors extends Component
 {
@@ -25,9 +26,13 @@ class Instructors extends Component
         ]);
     }
 
-    public function select(User $user, $toUpdate = false){
+    public function mount() { $this->user = new User(); }
+
+    public function select(User $user, String $purpose){
         //if it's the edit button that was pressed we just send the selected Admin to the updateOrCreate Component
-        if($toUpdate){ return $this->emit('userSelected', ['user' => $user]); }
+        if($purpose == 'toUpdate'){ return $this->emitTo('admin.users.update-or-create-user', 'userSelected', ['user' => $user]); }
+        //if it's the courses button that was pressed we just send the selected Admin to the updateOrCreate Component
+        if($purpose == 'toViewCourses'){ return $this->emitTo('admin.instructors.assign-course-to-instructor', 'userSelected', ['user' => $user]); }
         $this->user = $user;
         $this->name = $this->user->name;
     }

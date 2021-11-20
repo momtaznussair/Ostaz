@@ -9,6 +9,8 @@
                     <th class="border-bottom-0">{{__('Name')}}</th>
                     <th class="border-bottom-0">{{__('Active')}}</th>
                     <th class="border-bottom-0">{{__('Category')}}</th>
+                    <th class="border-bottom-0">{{__('Instructor')}}</th>
+                    <th class="border-bottom-0">{{__('Instructor') . ' / ' . __('E-mail')}}</th>
                     <th class="border-bottom-0">{{__('Operations')}}</th>
                 </tr>
             </thead>
@@ -25,6 +27,8 @@
                             </div>
                         </td>
                         <td>{{$course->category->name}}</td>
+                        <td>{{$course->instructor->name}}</td>
+                        <td>{{$course->instructor->email}}</td>
                         <td>
                             @empty($course->deleted_at)
                                 @can('Course_edit')
@@ -62,6 +66,6 @@
     <div class="row mx-3">{{$courses->links()}} </div>
     {{-- modal --}}
     <x-crud-by-name-modal mode="delete" title="{{__('Delete')}}"/>
-    <x-create-or-update-course mode="save" title="{{__('Add New')}}" :categories="$categories"/>
-    <x-create-or-update-course mode="update" title="{{__('Edit')}}" :categories="$categories"/>
+    <x-create-or-update-course mode="save" title="{{__('Add New')}}" :categories="$categories" :instructors="$instructors" />
+    <x-create-or-update-course mode="update" title="{{__('Edit')}}" :categories="$categories" :instructors="$instructors" />
 </div>

@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Admin\Courses;
 
+use App\Contracts\AdminRepositoryInterface;
 use App\Models\Course;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Contracts\CourseRepositoryInterface;
 use App\Contracts\CategoryRepositoryInterface;
+use App\Contracts\UserRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Courses extends Component
@@ -17,13 +19,14 @@ class Courses extends Component
     public $search = '', $trashed = false, $active = true;
     public $course, $name, $updateMode;
     
-    public function render(CourseRepositoryInterface $courseRepository, CategoryRepositoryInterface $category)
+    public function render(CourseRepositoryInterface $courseRepository, CategoryRepositoryInterface $category, UserRepositoryInterface $userRepository)
     {
         $this->authorize('Course_access');
         return view('livewire.admin.courses.courses', [
             'courses' => $courseRepository
             ->getAll($this->search, $this->trashed, $this->active),
-            'categories' => $category->getAll()->pluck('name', 'id')
+            'categories' => $category->getAll()->pluck('name', 'id'),
+            'instructors' => $userRepository->getAll()->pluck('name', 'id')
         ]);
     }
 
@@ -37,7 +40,8 @@ class Courses extends Component
     {
       $ruls = [
             'course.name' => 'required|string|unique:courses,name',
-            'course.category_id' => 'required|exists:categories,id'
+            'course.category_id' => 'required|exists:categories,id',
+            'course.instructor_id' => 'required|exists:users,id',
        ];
 
        if($this->updateMode){

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\City;
+use App\Models\Course;
 use App\Traits\Scopes\IsTrashed;
 use App\Traits\Scopes\Searchable;
 use Laravel\Sanctum\HasApiTokens;
@@ -64,4 +65,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(City::class);
     }
+
+    // courses of user of type instructor
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'instructor_id');
+    }
+
+    public function studentCourses()
+    {
+        return $this->belongsToMany(Course::class)->withTimestamps();
+    }
+
 }

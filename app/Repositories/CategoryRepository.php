@@ -46,4 +46,9 @@ class CategoryRepository implements CategoryRepositoryInterface{
     {
         return Category::withTrashed()->find($category)->restore();
     }
+
+    public function getCourses($category)
+    {
+        return Category::find($category)->courses()->pluck('name', 'id');
+    }
 }

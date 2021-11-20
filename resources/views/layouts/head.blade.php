@@ -20,6 +20,8 @@
 <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 <!-- Internal Select2 css -->
 <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+<!---Internal  Prism css-->
+<link href="{{URL::asset('assets/plugins/prism/prism.css')}}" rel="stylesheet">
 <style>
     td{
         vertical-align: middle !important;

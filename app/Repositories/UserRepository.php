@@ -8,13 +8,13 @@ use App\Contracts\UserRepositoryInterface;
 
 class UserRepository implements UserRepositoryInterface{
 
-    public function getAll(string $search = '', bool $trashed = false, bool $active = true, string $type)
+    public function getAll(string $search = '', bool $trashed = false, bool $active = true, $type = 'Instructor')
     {
-       return User::with('city')
-       ->search('name', $search)
+       return User::search('name', $search)
        ->where('type', $type)
        ->isTrashed($trashed)
        ->isActive($active)
+       ->with(['city', 'courses'])
        ->paginate();
     }
 

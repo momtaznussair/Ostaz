@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Traits\Scopes\ActiveScope;
+use App\Models\User;
 use App\Traits\Scopes\IsTrashed;
 use App\Traits\Scopes\Searchable;
+use App\Traits\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,5 +23,15 @@ class Course extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function instructor()
+    {
+        return $this->belongsTo(User::class, 'instructor_id');
+    }
+
+    public function student()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }

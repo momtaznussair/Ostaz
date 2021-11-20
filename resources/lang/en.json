@@ -75,5 +75,8 @@
     "Instructors" : "Instructors",
     "Male" : "Male",
     "Female" : "Female",
-    "Students" : "Students"
+    "Students" : "Students",
+    "Instructor" : "Instructor",
+    "Assign a course" : "Assign a course",
+    "Close" : "Close"
 }

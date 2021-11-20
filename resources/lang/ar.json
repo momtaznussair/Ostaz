@@ -75,5 +75,8 @@
     "Instructors" : "المدربين",
     "Male" : "ذكر",
     "Female" : "أنثى",
-    "Students" : "الطلاب"
+    "Students" : "الطلاب",
+    "Instructor" : "المدرب",
+    "Assign a course" : "إضافة برنامج",
+    "Close" : "إغلاق"
 }

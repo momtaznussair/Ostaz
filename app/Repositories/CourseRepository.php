@@ -2,8 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Contracts\CourseRepositoryInterface;
+use App\Models\User;
 use App\Models\Course;
+use App\Contracts\CourseRepositoryInterface;
 
 class CourseRepository implements CourseRepositoryInterface{
 
@@ -12,6 +13,7 @@ class CourseRepository implements CourseRepositoryInterface{
        return  Course::search('name', $search)
        ->isTrashed($trashed)
        ->isActive($active)
+       ->with('category', 'instructor')
        ->paginate();
     }
 
@@ -27,6 +29,17 @@ class CourseRepository implements CourseRepositoryInterface{
     public function update($id, $course)
     {
        return $course->save();
+    }
+
+    public function assignToInstructor($instructor, $attributes)
+    {
+        return $instructor->courses()->create($attributes);
+    }
+
+    public function assignToStudent($student, $attributes)
+    {
+        $student->studentCourses()->attach($attributes['course']);
+        return true;
     }
 
     public function toggleActive($Course, bool $active){

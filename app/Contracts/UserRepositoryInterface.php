@@ -5,7 +5,7 @@ namespace App\Contracts;
 
 interface UserRepositoryInterface{
     // User Specific Methods
-    public function getAll(string $search = '', bool $trashed = false, bool $active = true, string $type);
+    public function getAll(string $search = '', bool $trashed = false, bool $active = true, string $type = 'Instructor');
     public function removeImage($user);
     public function updateOrCreate($data);
     public function remove($id);

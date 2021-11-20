@@ -12,7 +12,8 @@
                     <th class="border-bottom-0">{{__('Age')}}</th>
                     <th class="border-bottom-0">{{__('E-mail')}}</th>
                     <th class="border-bottom-0">{{__('Phone')}}</th>
-                    <th class="border-bottom-0">{{__('City')}}</th>
+                    <th class="border-bottom-0">{{__('Country')}}</th>
+                    <th class="border-bottom-0">{{__('Courses')}}</th>
                     <th class="border-bottom-0">{{__('Active')}}</th>
                     <th class="border-bottom-0">{{__('Operations')}}</th>
                  </tr>
@@ -22,14 +23,15 @@
                      <tr>
                          <td>{{$loop->iteration}}</td>
                          <td>
-                            <img alt="{{$student->name}}" src="{{asset('storage/' . $student->avatar)}}" style="width: 70px; height: 70px; border-radius:50%">
+                            <img alt="{{$student->name}}" src="{{asset('storage/' . $student->avatar)}}" class="img-fluid img-thumbnail rounded-circle" style="max-width: 6rem">
                         </td>
                          <td>{{$student->name}}</td>
                          <td>{{$student->gen}}</td>
                          <td>{{$student->age}}</td>
                          <td>{{$student->email}}</td>
                          <td>{{$student->phone}}</td>
-                         <td>{{$student->city->name}}</td>
+                         <td>{{$student->city->country->name}}</td>
+                         <td><i wire:click="select({{$student->id}}, 'toViewCourses')" data-toggle="modal" href="#coursesList" class="fas fa-envelope-open-text tx-22 tx-success" type="button"></i></td>
                          <td>
                              <div class="custom-control custom-switch">
                                  <input wire:change="toggleActive({{$student->active}})" wire:click="select({{$student->id}})"
@@ -38,29 +40,31 @@
                              </div>
                          </td>
                          <td>
-                             @empty($student->deleted_at)
-                                 @can('User_edit')
-                                 <a  
-                                     wire:click="select({{$student->id}}, true)"
-                                     data-toggle="modal" href="#updateOrCreate" class="btn btn-sm btn-info"
-                                     title="{{__('Edit')}}"><i class="las la-pen"></i></a> 
-                                 @endcan
-                             @endempty
-                             @can('User_delete')
- 
-                             @if ($student->deleted_at)
-                                 <a  
-                                     wire:click="restore({{$student->id}})" class="btn btn-sm btn-info"
-                                     title="{{__('Restore')}}"><i class="fas fa-trash-restore tx-white"></i>
-                                 </a> 
-                                 @else
-                                 <a
-                                 wire:click="select({{$student->id}})"
-                                 class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                 data-toggle="modal" href="#delete" title="{{__('Delete')}}"><i
-                                 class="las la-trash"></i></a>
-                             @endif
-                             @endcan     
+                            <div class="row d-flex justify-content-around">
+                                @empty($student->deleted_at)
+                                    @can('User_edit')
+                                    <a  
+                                        wire:click="select({{$student->id}}, 'toUpdate')"
+                                        data-toggle="modal" href="#updateOrCreate" class="btn btn-sm btn-info col-5"
+                                        title="{{__('Edit')}}"><i class="las la-pen"></i></a> 
+                                    @endcan
+                                @endempty
+                                @can('User_delete')
+    
+                                @if ($student->deleted_at)
+                                    <a  
+                                        wire:click="restore({{$student->id}})" class="btn btn-sm btn-info col-5"
+                                        title="{{__('Restore')}}"><i class="fas fa-trash-restore tx-white"></i>
+                                    </a> 
+                                    @else
+                                    <a
+                                    wire:click="select({{$student->id}})"
+                                    class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                    data-toggle="modal" href="#delete" title="{{__('Delete')}}"><i
+                                    class="las la-trash"></i></a>
+                                @endif
+                                @endcan
+                            </div>     
                          </td>
                      </tr>
                  @empty
@@ -76,4 +80,6 @@
       <x-crud-by-name-modal mode="delete" title="{{__('Delete')}}"/>
 
       @livewire('admin.users.update-or-create-user', ['userRole' => 'Student'])
+      @livewire('admin.students.assign-courses-to-students', ['user' => $user])
+
  </div>

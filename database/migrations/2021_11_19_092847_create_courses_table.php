@@ -17,6 +17,7 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('category_id')->constrained();
+            $table->foreignId('instructor_id')->constrained('users');
             $table->boolean('active')->default(true);
             $table->softDeletes();
             $table->timestamps();

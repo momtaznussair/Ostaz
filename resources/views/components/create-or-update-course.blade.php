@@ -25,7 +25,15 @@
                         {!! Form::text('name', null, ['wire:model' => 'course.name', 'id' => 'name', 'class' => ['form-control']]) !!}
                         @error('course.name') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div>@enderror
                     </div>
+                </div>
+
+                <div class="col">
+                    <div>
+                        {!! Form::label('instructor_id', __('Instructor'), ['class' => 'label-required']) !!}
                     </div>
+                    {!! Form::select('instructor_id', $instructors->prepend(__('Select one'), ''), null, ['wire:model' => 'course.instructor_id', 'id' => 'instructor_id', 'class' => ['form-control']]) !!}
+                    @error('course.instructor_id') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div>@enderror
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Cancel')}}</button>

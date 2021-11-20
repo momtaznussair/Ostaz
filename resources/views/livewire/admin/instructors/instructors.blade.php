@@ -12,7 +12,8 @@
                     <th class="border-bottom-0">{{__('Age')}}</th>
                     <th class="border-bottom-0">{{__('E-mail')}}</th>
                     <th class="border-bottom-0">{{__('Phone')}}</th>
-                    <th class="border-bottom-0">{{__('City')}}</th>
+                    <th class="border-bottom-0">{{__('Country')}}</th>
+                    <th class="border-bottom-0">{{__('Courses')}}</th>
                     <th class="border-bottom-0">{{__('Active')}}</th>
                     <th class="border-bottom-0">{{__('Operations')}}</th>
                  </tr>
@@ -22,14 +23,15 @@
                      <tr>
                          <td>{{$loop->iteration}}</td>
                          <td>
-                            <img alt="{{$instructor->name}}" src="{{asset('storage/' . $instructor->avatar)}}" style="width: 70px; height: 70px; border-radius:50%">
+                            <img alt="{{$instructor->name}}" src="{{asset('storage/' . $instructor->avatar)}}" class="img-fluid img-thumbnail rounded-circle" style="max-width: 6rem">
                         </td>
                          <td>{{$instructor->name}}</td>
                          <td>{{$instructor->gen}}</td>
                          <td>{{$instructor->age}}</td>
                          <td>{{$instructor->email}}</td>
                          <td>{{$instructor->phone}}</td>
-                         <td>{{$instructor->city->name}}</td>
+                         <td>{{$instructor->city->country->name}}</td>
+                         <td><i wire:click="select({{$instructor->id}}, 'toViewCourses')" data-toggle="modal" href="#coursesList" class="fas fa-envelope-open-text tx-22 tx-success" type="button"></i></td>
                          <td>
                              <div class="custom-control custom-switch">
                                  <input wire:change="toggleActive({{$instructor->active}})" wire:click="select({{$instructor->id}})"
@@ -38,11 +40,12 @@
                              </div>
                          </td>
                          <td>
-                             @empty($instructor->deleted_at)
-                                 @can('User_edit')
+                             <div class="row d-flex justify-content-around">
+                            @empty($instructor->deleted_at)
+                                @can('User_edit')
                                  <a  
-                                     wire:click="select({{$instructor->id}}, true)"
-                                     data-toggle="modal" href="#updateOrCreate" class="btn btn-sm btn-info"
+                                     wire:click="select({{$instructor->id}}, 'toUpdate')"
+                                     data-toggle="modal" href="#updateOrCreate" class="btn btn-sm btn-info col-5"
                                      title="{{__('Edit')}}"><i class="las la-pen"></i></a> 
                                  @endcan
                              @endempty
@@ -50,7 +53,7 @@
  
                              @if ($instructor->deleted_at)
                                  <a  
-                                     wire:click="restore({{$instructor->id}})" class="btn btn-sm btn-info"
+                                     wire:click="restore({{$instructor->id}})" class="btn btn-sm btn-info col-5"
                                      title="{{__('Restore')}}"><i class="fas fa-trash-restore tx-white"></i>
                                  </a> 
                                  @else
@@ -61,6 +64,7 @@
                                  class="las la-trash"></i></a>
                              @endif
                              @endcan     
+                             </div>
                          </td>
                      </tr>
                  @empty
@@ -74,6 +78,9 @@
      <div class="row mx-3">{{$instructors->links()}} </div>
      {{-- modal --}}
      <x-crud-by-name-modal mode="delete" title="{{__('Delete')}}"/>
-
     @livewire('admin.users.update-or-create-user', ['userRole' => 'Instructor'])
+    @livewire('admin.instructors.assign-course-to-instructor', ['user' => $user])
+     
+    
+{{-- end of root --}}
  </div>
