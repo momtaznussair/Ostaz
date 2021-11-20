@@ -33,11 +33,13 @@
                          <td>{{$student->city->country->name}}</td>
                          <td><i wire:click="select({{$student->id}}, 'toViewCourses')" data-toggle="modal" href="#coursesList" class="fas fa-envelope-open-text tx-22 tx-success" type="button"></i></td>
                          <td>
+                             @can('User_edit')
                              <div class="custom-control custom-switch">
                                  <input wire:change="toggleActive({{$student->active}})" wire:click="select({{$student->id}})"
                                  type="checkbox" {{ $student->active ? 'checked' : '' }} {{ $student->deleted_at ? 'disabled' : '' }} class="custom-control-input" id="{{$student->id}}">
                                  <label class="custom-control-label" for="{{$student->id}}"></label>
                              </div>
+                             @endcan
                          </td>
                          <td>
                             <div class="row d-flex justify-content-around">

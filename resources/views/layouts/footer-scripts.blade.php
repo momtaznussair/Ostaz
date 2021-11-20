@@ -52,6 +52,7 @@
 <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 {{-- alpine js --}}
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 {{-- livewire scripts --}}
 @livewireScripts
 

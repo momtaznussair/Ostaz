@@ -18,11 +18,13 @@
                          <td>{{$loop->iteration}}</td>
                          <td>{{$city->name}}</td>
                          <td>
+                            @can('city_edit')
                              <div class="custom-control custom-switch">
                                  <input wire:change="toggleActive({{$city->active}})" wire:click="select({{$city->id}})"
                                  type="checkbox" {{ $city->active ? 'checked' : '' }} {{ $city->deleted_at ? 'disabled' : '' }} class="custom-control-input" id="{{$city->id}}">
                                  <label class="custom-control-label" for="{{$city->id}}"></label>
                              </div>
+                             @endcan
                          </td>
                          <td>{{$city->country->name}}</td>
                          <td>

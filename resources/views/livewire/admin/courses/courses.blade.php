@@ -20,11 +20,13 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$course->name}}</td>
                         <td>
+                            @can('Category_edit')
                             <div class="custom-control custom-switch">
                                 <input wire:change="toggleActive({{$course->active}})" wire:click="select({{$course->id}})"
                                 type="checkbox" {{ $course->active ? 'checked' : '' }} {{ $course->deleted_at ? 'disabled' : '' }} class="custom-control-input" id="{{$course->id}}">
                                 <label class="custom-control-label" for="{{$course->id}}"></label>
                             </div>
+                            @endcan
                         </td>
                         <td>{{$course->category->name}}</td>
                         <td>{{$course->instructor->name}}</td>

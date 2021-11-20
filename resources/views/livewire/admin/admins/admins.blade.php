@@ -30,11 +30,13 @@
 						   @endforeach
 					   </td>
                         <td>
+                            @can('Admin_edit')
                             <div class="custom-control custom-switch">
                                 <input wire:change="toggleActive({{$Admin->active}})" wire:click="select({{$Admin}})"
                                 type="checkbox" {{ $Admin->active ? 'checked' : '' }} {{ ($Admin->deleted_at || $admin->count() == 1) ? 'disabled' : '' }} class="custom-control-input" id="{{$Admin->id}}">
                                 <label class="custom-control-label" for="{{$Admin->id}}"></label>
                             </div>
+                            @endcan
                         </td>
                         <td>
                             @can('Admin_edit')

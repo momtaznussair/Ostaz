@@ -5,11 +5,7 @@ namespace App\Http\Livewire\Admin\Students;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\WithFileUploads;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 use App\Contracts\UserRepositoryInterface;
-use App\Contracts\CountryRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Students extends Component
@@ -31,7 +27,7 @@ class Students extends Component
 
     public function mount() { $this->user = new User(); }
 
-    public function select(User $user, String $purpose){
+    public function select(User $user, String $purpose = null){
         //if it's the edit button that was pressed we just send the selected Admin to the updateOrCreate Component
         if($purpose == 'toUpdate'){ return $this->emitTo('admin.users.update-or-create-user', 'userSelected', ['user' => $user]); }
         //if it's the courses button that was pressed we just send the selected Admin to the updateOrCreate Component

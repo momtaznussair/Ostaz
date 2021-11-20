@@ -16,11 +16,13 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$country->name}}</td>
                         <td>
+                            @can('country_edit')
                             <div class="custom-control custom-switch">
                                 <input wire:change="toggleActive({{$country->active}})" wire:click="select({{$country->id}})"
                                 type="checkbox" {{ $country->active ? 'checked' : '' }} {{ $country->deleted_at ? 'disabled' : '' }} class="custom-control-input" id="{{$country->id}}">
                                 <label class="custom-control-label" for="{{$country->id}}"></label>
                             </div>
+                            @endcan
                         </td>
                         <td>
                             @can('country_delete')
