@@ -86,7 +86,7 @@
     "All Countries" : "All Countries",
     "Deleted" : "Deleted",
     "Settings" : "settings",
-    "About Us" : "About Us",
+    "About The App" : "About The App",
     "Contact Us" : "Contact Us",
     "Your Opinion" : "Your Opinion",
     "Notifications" : "Notifications",
@@ -108,5 +108,6 @@
     "Categories Count" : "Categories Count",
     "Countries Count" : "Countries Count",
     "Cities Count" : "Cities Count",
-    "Users Count" : "Users Count"
+    "Users Count" : "Users Count",
+    "Change Image" : "Change Image"
 }

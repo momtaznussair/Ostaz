@@ -86,7 +86,7 @@
     "All Countries" : "كل الدول",
     "Deleted" : "محذوف",
     "Settings" : "الإعدادات",
-    "About Us" : "عن التطبيق",
+    "About he App" : "عن التطبيق",
     "Your Opinion" : "رأيك",
     "Contact Us" : "تواصل معنا",
     "Notifications" : "الإشعارات",
@@ -108,5 +108,6 @@
     "Categories Count" : "عدد التصنيفات",
     "Countries Count" : "عددالدول",
     "Cities Count" : "عدد المدن",
-    "Users Count" : "عدد المستخدمين"
+    "Users Count" : "عدد المستخدمين",
+    "Change Image" : "تغيير الصورة"
 }
