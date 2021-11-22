@@ -48,7 +48,7 @@
                                         <div class="form-group row">
                                             <div class="mx-auto">
                                                     <input wire:model="rememberMe" type="checkbox"
-                                                        name="remember" id="remember"
+                                                        name="remember" id="remember" /> 
 
                                                     <label class="mt-3" for="remember">
                                                         {{ __('Remember Me') }}

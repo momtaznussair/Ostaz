@@ -45,7 +45,9 @@ class PermissionSeeeder extends Seeder
             'Country_report_view',
             'Student_report_view',
             'Course_report_view',
-            'Course_report_view'
+            'Course_report_view',
+            'user_messages_reply',
+            'Settings_access'
         ];
 
         foreach ($permissions as $permission) {

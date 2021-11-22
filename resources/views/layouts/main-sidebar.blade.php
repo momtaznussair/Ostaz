@@ -94,6 +94,15 @@
 						</ul>
 					</li>
 
+					@can('Settings_access')
+					<li class="slide">
+						<a class="side-menu__item" href="{{ route('admin.settings') }}">
+							<i class="fa fa-cogs side-menu__icon"></i>
+							<span class="side-menu__label mt-2">{{__('Settings')}}</span>
+						</a>
+					</li>	
+					@endcan
+
 				</ul>
 			</div>
 		</aside>

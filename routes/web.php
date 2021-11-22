@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Mail\ResponesToUser;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -56,6 +57,8 @@ function()
          Route::view('reports/students', 'admin.reports.students')->name('reports.students');
          Route::view('reports/countries', 'admin.reports.countries')->name('reports.countries');
          Route::view('reports/courses', 'admin.reports.courses')->name('reports.courses');
+         //settings
+         Route::view('settings', 'admin.settings.settings')->name('settings');
         //end of admin auth routes
     });
     //guest admin routes
