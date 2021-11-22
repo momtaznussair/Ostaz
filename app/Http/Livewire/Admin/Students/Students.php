@@ -20,6 +20,8 @@ class Students extends Component
 
     public function render(UserRepositoryInterface $userRepository)
     {
+        $this->authorize('User_access');
+
         return view('livewire.admin.students.students', [
             'students' => $userRepository->getAll($this->search, $this->trashed, $this->active, 'Student'),
         ]);

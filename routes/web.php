@@ -52,6 +52,10 @@ function()
          Route::view('instructors', 'admin.instructors.instructors')->name('instructors');
          // students
          Route::view('students', 'admin.students.students')->name('students');
+         //reports
+         Route::view('reports/students', 'admin.reports.students')->name('reports.students');
+         Route::view('reports/countries', 'admin.reports.countries')->name('reports.countries');
+         Route::view('reports/courses', 'admin.reports.courses')->name('reports.courses');
         //end of admin auth routes
     });
     //guest admin routes

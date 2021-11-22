@@ -78,5 +78,11 @@
     "Students" : "Students",
     "Instructor" : "Instructor",
     "Assign a course" : "Assign a course",
-    "Close" : "Close"
+    "Close" : "Close",
+    "Reports" : "Reports",
+    "Courses Count" : "Courses Count",
+    "Instructors Count" : "Instructors Count",
+    "Students Count" : "Students Count",
+    "All Countries" : "All Countries",
+    "Deleted" : "Deleted"
 }

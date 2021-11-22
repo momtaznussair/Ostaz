@@ -8,11 +8,14 @@ use App\Contracts\CourseRepositoryInterface;
 
 class CourseRepository implements CourseRepositoryInterface{
 
-    public function getAll(string $search = '', bool $trashed = false, bool $active = true)
+    public function getAll(string $search = '', bool $trashed = false, bool $active = true, $category = null)
     {
-       return  Course::search('name', $search)
+       return  Course::with(['category', 'instructor'])
+       ->withCount('student')
+       ->search('name', $search)
        ->isTrashed($trashed)
        ->isActive($active)
+       ->category($category)
        ->with('category', 'instructor')
        ->paginate();
     }

@@ -8,14 +8,17 @@ use App\Traits\Scopes\IsTrashed;
 use App\Traits\Scopes\Searchable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Traits\Scopes\ActiveScope;
+use App\Traits\Scopes\CountryScope;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Searchable, IsTrashed, ActiveScope, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, Searchable, IsTrashed, ActiveScope, 
+    SoftDeletes, CountryScope, SoftCascadeTrait;
 
    
     protected $fillable = [
@@ -53,6 +56,14 @@ class User extends Authenticatable
     protected $attributes = [
         'avatar' => 'users/default.jpg'
     ];
+
+    /**
+     * The relations that should be soft deleted when this gets soft deleted.
+     *
+     * @var array
+     */
+    protected $softCascade = ['courses'];
+
 
     protected $appends  = ['gen'];
 

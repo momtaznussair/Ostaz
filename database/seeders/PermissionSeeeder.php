@@ -36,15 +36,19 @@ class PermissionSeeeder extends Seeder
             }
 
          // create permissions for Role Model
-         $rolePermissions = [
+         $permissions = [
             'Role_access',
             'Role_create',
             'Role_edit',
             'Role_show',
             'Role_delete',
+            'Country_report_view',
+            'Student_report_view',
+            'Course_report_view',
+            'Course_report_view'
         ];
 
-        foreach ($rolePermissions as $permission) {
+        foreach ($permissions as $permission) {
             Permission::create([
                 'name' => $permission,
                 'guard_name' => 'admin'

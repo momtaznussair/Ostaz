@@ -12,6 +12,7 @@ class AssignCoursesToStudents extends Component
     public User $user;
     public $category, $course;
     public $courses = [];
+    public bool $notInReports = true;
 
     protected $listeners = ['userSelected'];
     public function render(CategoryRepositoryInterface $categoryRepository, CourseRepositoryInterface $courseRepository)

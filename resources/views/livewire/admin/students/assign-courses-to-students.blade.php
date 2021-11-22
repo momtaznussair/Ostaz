@@ -1,9 +1,9 @@
-<div class="root">
+<div class="root" x-data="{show : @entangle('notInReports') }">
     <div  wire:ignore.self class="modal" id="coursesList">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
-                    <h6 class="modal-title mx-3">{{__('Student') . ': ' . $user->name  . ' (' . __('Courses') . ')'}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                    <h6 class="modal-title mx-3">{{$user->name  . ' (' . __('Courses') . ')'}}</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="table-responsive">
@@ -14,7 +14,7 @@
                                     <th>{{__('Name')}}</th>
                                     <th>{{__('Category')}}</th>
                                     <th>{{__('Instructor')}}</th>
-                                    <th>{{__('Status')}}</th>
+                                    <th x-show="show">{{__('Status')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -24,7 +24,7 @@
                                     <td>{{$course->name}}</td>
                                     <td>{{$course->category->name}}</td>
                                     <td>{{$course->instructor->name}}</td>
-                                    <td>
+                                    <td x-show="show">
                                         <x-account-status-badge :status="$course->active" />
                                     </td>
                                 </tr>
@@ -35,7 +35,7 @@
                         </table>
                     </div>                    
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" x-show="show">
                     <button data-dismiss="modal" data-toggle="modal" href="#assignCourse" class="btn ripple btn-primary" type="button">{{__('Assign a course')}}</button>
                     <button class="btn ripple btn-secondary" data-dismiss="modal" type="button">{{__('Close')}}</button>
                 </div>
@@ -44,7 +44,7 @@
     </div>
     {{-- assign a course form --}}
     
-    <div  wire:ignore.self class="modal" id="assignCourse">
+    <div  wire:ignore.self class="modal" id="assignCourse" x-show="show">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">

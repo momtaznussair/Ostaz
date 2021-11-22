@@ -9,6 +9,7 @@
                     <th class="border-bottom-0">{{__('Name')}}</th>
                     <th class="border-bottom-0">{{__('Active')}}</th>
                     <th class="border-bottom-0">{{__('Category')}}</th>
+                    <th class="border-bottom-0">{{__('Students Count')}}</th>
                     <th class="border-bottom-0">{{__('Instructor')}}</th>
                     <th class="border-bottom-0">{{__('Instructor') . ' / ' . __('E-mail')}}</th>
                     <th class="border-bottom-0">{{__('Operations')}}</th>
@@ -28,9 +29,10 @@
                             </div>
                             @endcan
                         </td>
-                        <td>{{$course->category->name}}</td>
-                        <td>{{$course->instructor->name}}</td>
-                        <td>{{$course->instructor->email}}</td>
+                        <td>{{$course->category ? $course->category->name : __('Deleted')}}</td>
+                        <td>{{$course->student_count}}</td>
+                        <td>{{$course->instructor ? $course->instructor->name : __('Deleted')}}</td>
+                        <td>{{$course->instructor ? $course->instructor->email  : __('Deleted') }}</td>
                         <td>
                             @empty($course->deleted_at)
                                 @can('Course_edit')
@@ -59,7 +61,7 @@
                     </tr>
                 @empty
                 <tr class="tx-center">
-                    <td colspan="5">{{__('No results found.')}}</td>
+                    <td colspan="8">{{__('No results found.')}}</td>
                 </tr>
                 @endforelse
             </tbody>

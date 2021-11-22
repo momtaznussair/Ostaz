@@ -78,5 +78,11 @@
     "Students" : "الطلاب",
     "Instructor" : "المدرب",
     "Assign a course" : "إضافة برنامج",
-    "Close" : "إغلاق"
+    "Close" : "إغلاق",
+    "Reports" : "التقارير",
+    "Courses Count" : "عدد البرامج",
+    "Instructors Count" : "عدد المدربين",
+    "Students Count" : "عدد الطلاب",
+    "All Countries" : "كل الدول",
+    "Deleted" : "محذوف"
 }

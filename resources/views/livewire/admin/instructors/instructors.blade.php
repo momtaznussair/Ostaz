@@ -30,7 +30,7 @@
                          <td>{{$instructor->age}}</td>
                          <td>{{$instructor->email}}</td>
                          <td>{{$instructor->phone}}</td>
-                         <td>{{$instructor->city->country->name}}</td>
+                         <td>{{$instructor->city ? $instructor->city->country->name  : __('Deleted')}}</td>
                          <td><i wire:click="select({{$instructor->id}}, 'toViewCourses')" data-toggle="modal" href="#coursesList" class="fas fa-envelope-open-text tx-22 tx-success" type="button"></i></td>
                          <td>
                             @can('User_edit')

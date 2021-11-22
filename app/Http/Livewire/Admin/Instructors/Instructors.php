@@ -21,6 +21,7 @@ class Instructors extends Component
 
     public function render(UserRepositoryInterface $userRepository)
     {
+        $this->authorize('User_access');
         return view('livewire.admin.instructors.instructors', [
             'instructors' => $userRepository->getAll($this->search, $this->trashed, $this->active, 'Instructor'),
         ]);

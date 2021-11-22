@@ -26,7 +26,7 @@
                              </div>
                              @endcan
                          </td>
-                         <td>{{$city->country->name}}</td>
+                         <td>{{$city->country  ? $city->country->name : __('Deleted')}}</td>
                          <td>
                              @empty($city->deleted_at)
                                  @can('city_edit')
