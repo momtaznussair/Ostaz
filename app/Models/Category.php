@@ -23,10 +23,19 @@ class Category extends Model
         'active' => true
     ];
 
+    protected $appends = ['instructors'];
+
+
     protected $softCascade = ['courses'];
 
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function getInstructorsAttribute()
+    {
+        return User::whereIn('id', $this->courses->pluck('instructor_id'));
+
     }
 }

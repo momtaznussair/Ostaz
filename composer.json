@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "askedio/laravel-soft-cascade": "^8.1",
         "fruitcake/laravel-cors": "^2.0",
+        "fx3costa/laravelchartjs": "^2.8",
         "guzzlehttp/guzzle": "^7.0.1",
         "haydenpierce/class-finder": "^0.4.3",
         "laravel/framework": "^8.65",

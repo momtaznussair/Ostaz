@@ -103,5 +103,10 @@
     "Welcome!" : "Welcome!",
     "Sending..." : "Sending...",
     "Content" : "Content",
-    "Sent Successfully!" : "Sent Successfully!"
+    "Sent Successfully!" : "Sent Successfully!",
+    "Welcome Back!" : "Welcome Back!",
+    "Categories Count" : "Categories Count",
+    "Countries Count" : "Countries Count",
+    "Cities Count" : "Cities Count",
+    "Users Count" : "Users Count"
 }

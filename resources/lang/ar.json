@@ -103,5 +103,10 @@
     "Welcome!" : "مرحباً!",
     "Sending..." : "جاري الإرسال...",
     "Content" : "المحتوى",
-    "Sent Successfully!" : "تم الإرسال بنجاح!"
+    "Sent Successfully!" : "تم الإرسال بنجاح!",
+    "Welcome Back!" : "مرحباً بعودتكم!",
+    "Categories Count" : "عدد التصنيفات",
+    "Countries Count" : "عددالدول",
+    "Cities Count" : "عدد المدن",
+    "Users Count" : "عدد المستخدمين"
 }

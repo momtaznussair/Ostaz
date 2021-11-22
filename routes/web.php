@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Http\Controllers\AdminHomeController;
 use App\Mail\ResponesToUser;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -32,7 +33,8 @@ function()
 
     //Authenticated admins routes
     Route::middleware(['admin.auth'])->group(function () {
-        Route::view('/', 'admin.home')->name('home');
+        // Route::view('/', 'admin.home')->name('home');
+        Route::get('/', [AdminHomeController::class, 'index'])->name('home');
         Route::post('logout', [AuthController::class, 'logout'])->name('logout');
         Route::view('profile', 'admin.profile.profile')->name('profile');
         //roles

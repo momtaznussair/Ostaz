@@ -10,6 +10,8 @@ use Livewire\WithPagination;
 class Courses extends Component
 {
     use WithPagination, AuthorizesRequests;
+    protected $paginationTheme = 'bootstrap';
+
     public $search = '', $category;
     public function render(CourseRepositoryInterface $courseRepository)
     {
