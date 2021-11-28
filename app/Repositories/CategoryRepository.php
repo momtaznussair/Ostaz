@@ -37,11 +37,6 @@ class CategoryRepository implements CategoryRepositoryInterface{
       return $category->delete();
     }
 
-    public function getTrashed(string $keyword = '')
-    {
-        return  Category::search('name', $keyword)->onlyTrashed()->paginate();
-    }
-
     public function restore($category)
     {
         return Category::withTrashed()->find($category)->restore();

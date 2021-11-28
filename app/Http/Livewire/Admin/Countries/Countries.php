@@ -35,7 +35,7 @@ class Countries extends Component
 
     protected function rules()
     {
-        return [ 'name' => ['required', 'unique:countries,name|unique:countries,name', 
+        return [ 'name' => ['required', 'unique:countries,name', 
             Rule::in($this->allCountries)
         ] ];
     }
