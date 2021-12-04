@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Admins;
 
-use App\Contracts\AdminRepositoryInterface;
 use App\Models\Admin;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Contracts\RoleRepositoyInterface;
 use Illuminate\Validation\Rules\Password;
+use App\Contracts\RoleRepositoryInterface;
+use App\Contracts\AdminRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UpdateOrCreateAdmin extends Component
@@ -19,7 +19,7 @@ class UpdateOrCreateAdmin extends Component
 
     protected $listeners = ['adminSelected'];
     
-    public function render(RoleRepositoyInterface $roleRepository)
+    public function render(RoleRepositoryInterface $roleRepository)
     {
         return view('livewire.admin.admins.update-or-create-admin', [
             'allRoles' => $roleRepository->getAll()
