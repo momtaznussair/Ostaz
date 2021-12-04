@@ -21,6 +21,18 @@ class UserRepository implements UserRepositoryInterface{
        ->paginate();
     }
 
+    public function getById($id){
+        # code...
+    }
+
+    public function add($data){
+        # code...
+    }
+
+    public function update($id, $data){
+        # code...
+    }
+
     public function updateOrCreate($data) {
         $data['avatar'] &&  $data['user']['avatar'] = $data['avatar']->store('users');
         $data['password'] && $data['user']['password'] = Hash::make($data['password']);
@@ -34,18 +46,15 @@ class UserRepository implements UserRepositoryInterface{
         return $user->update(['active' => !$active]);
     }
 
-    public function remove($User)
-    {
+    public function remove($User){
       return $User->delete();
     }
 
-    public function restore($User)
-    {
+    public function restore($User) {
         return User::withTrashed()->find($User)->restore();
     }
 
-    public function removeImage($user)
-    {
+    public function removeImage($user){
         return $user->update(['avatar' => 'users/default.jpg']);
     }
 }

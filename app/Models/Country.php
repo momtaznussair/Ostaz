@@ -47,7 +47,6 @@ class Country extends Model
 
     public function getCoursesAttribute()
     {
-        //count
-        return Course::whereIn('instructor_id', $this->instructors->pluck('id')->toArray());
+        return Course::whereIn('instructor_id', $this->instructors->get()->pluck('id'));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Category;
 use App\Contracts\CourseRepositoryInterface;
 
 class CourseRepository implements CourseRepositoryInterface{
@@ -13,10 +14,9 @@ class CourseRepository implements CourseRepositoryInterface{
        return  Course::with(['category', 'instructor'])
        ->withCount('student')
        ->search('name', $search)
+       ->category($category)
        ->isTrashed($trashed)
        ->isActive($active)
-       ->category($category)
-       ->with('category', 'instructor')
        ->paginate();
     }
 

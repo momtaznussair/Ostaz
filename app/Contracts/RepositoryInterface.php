@@ -10,5 +10,5 @@ interface RepositoryInterface{
     public function update($id, $data);
     public function remove($id);
     public function restore($id);
-    public function toggleActive($course, bool $active);
+    public function toggleActive($id, bool $active);
 }

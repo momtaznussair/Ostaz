@@ -16,8 +16,19 @@ class AdminRepository implements AdminRepositoryInterface{
        ->paginate();
     }
 
-    public function updateOrCreate($data)
-    {
+    public function getById($id){
+       return Admin::find($id);
+    }
+
+    public function add($data){
+        # code...
+    }
+
+    public function update($id, $data){
+        # code...
+    }
+
+    public function updateOrCreate($data){
         $data['avatar'] && $data['admin']['avatar'] = $this->saveImage($data['avatar']);
         $data['password'] && $data['admin']['password'] = Hash::make($data['password']);
         $admin = Admin::updateOrCreate(
@@ -31,23 +42,20 @@ class AdminRepository implements AdminRepositoryInterface{
         return $admin->update(['active' => !$active]);
     }
 
-    public function remove($admin)
-    {
+    public function remove($admin){
        return $admin->delete();
     }
 
-    private function saveImage($image)
-    {
+    private function saveImage($image){
         return $image->store('admins');
     }
 
-    public function removeImage(Admin $admin)
-    {
+    public function removeImage(Admin $admin){
         return $admin->update(['avatar' => 'admins/default.jpg']);
     }
 
-    public function restore($admin)
-    {
+    public function restore($admin){
         return Admin::withTrashed()->find($admin)->restore();
     }
+   
 }

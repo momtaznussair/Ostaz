@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Admin\Roles;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Contracts\RoleRepositoyInterface;
+use App\Contracts\RoleRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class EditRole extends Component
@@ -43,7 +43,7 @@ class EditRole extends Component
         $this->permissions = [];
     }
 
-    public function submit(RoleRepositoyInterface $roleRepository)
+    public function submit(RoleRepositoryInterface $roleRepository)
     {
         $this->authorize('Role_edit');
 

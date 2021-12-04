@@ -3,7 +3,16 @@
     <div>
         <div class="row d-flex justify-content-between px-4 mb-3">
             <div class="col-3">
-               {{-- //other filters --}}
+                <div class="row mx-2">
+                    <div wire:ignore class="col">
+                        <Select wire:model='category' class="form-control p-1" id="category">
+                            <option selected value=>{{ __('Categories') }}</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </Select>
+                    </div>
+                </div>
             </div>
             <div class="col-2">
                 <input wire:model='search' type="search" placeholder="{{ __('Search...') }}"

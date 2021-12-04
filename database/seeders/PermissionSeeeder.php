@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Str;
+use App\Helpers\GetModels;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
-use HaydenPierce\ClassFinder\ClassFinder;
 
 class PermissionSeeeder extends Seeder
 {
@@ -14,34 +13,22 @@ class PermissionSeeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(GetModels $models)
     {
-        //get all classes in App\Models namespace
-        $classes = ClassFinder::getClassesInNamespace('App\Models');
-            $models = [];
-            foreach ($classes as $class) {
-               $models[] = Str::afterLast($class, '\\');
-            }
+        //create permissions for each model
+        foreach ($models()->add('Role') as $model) {
 
-            //create permissions for each model
-            foreach ($models as $model) {
+            Permission::insert([
+                ['name' => $model .'_access', 'guard_name' => 'admin'],
+                ['name' => $model .'_create', 'guard_name' => 'admin'],
+                ['name' => $model .'_edit', 'guard_name' => 'admin'],
+                ['name' => $model .'_delete', 'guard_name' => 'admin'],
+                ['name' => $model .'_show', 'guard_name' => 'admin'],
+            ]);
+        }
 
-                Permission::insert([
-                    ['name' => $model .'_access', 'guard_name' => 'admin'],
-                    ['name' => $model .'_create', 'guard_name' => 'admin'],
-                    ['name' => $model .'_edit', 'guard_name' => 'admin'],
-                    ['name' => $model .'_delete', 'guard_name' => 'admin'],
-                    ['name' => $model .'_show', 'guard_name' => 'admin'],
-                ]);
-            }
-
-         // create permissions for Role Model
+         // create extra permissions
          $permissions = [
-            'Role_access',
-            'Role_create',
-            'Role_edit',
-            'Role_show',
-            'Role_delete',
             'Country_report_view',
             'Student_report_view',
             'Course_report_view',

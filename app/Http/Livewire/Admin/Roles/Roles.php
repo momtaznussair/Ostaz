@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Roles;
 
+use App\Contracts\RoleRepositoryInterface;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Contracts\RoleRepositoyInterface;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Spatie\Permission\Models\Role;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Roles extends Component
 {
@@ -16,7 +16,7 @@ class Roles extends Component
     public Role $role;
     public $name;
     
-    public function render(RoleRepositoyInterface $roleRepository)
+    public function render(RoleRepositoryInterface $roleRepository)
     {
         $this->authorize('Role_access');
         return view('livewire.admin.roles.roles', [
@@ -30,7 +30,7 @@ class Roles extends Component
         $this->name = $role->name;
     }
 
-    public function delete(RoleRepositoyInterface $roleRepository)
+    public function delete(RoleRepositoryInterface $roleRepository)
     {
         $this->authorize('Role_delete');
         $success = $roleRepository->remove($this->role->id);

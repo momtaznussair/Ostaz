@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\Roles;
 
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
-use App\Contracts\RoleRepositoyInterface;
+use App\Contracts\RoleRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CreateRole extends Component
@@ -35,7 +35,7 @@ class CreateRole extends Component
         $this->permissions = [];
     }
 
-    public  function submit(RoleRepositoyInterface $roleRepository)
+    public  function submit(RoleRepositoryInterface $roleRepository)
     {
         $this->authorize('Role_create');
 

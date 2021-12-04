@@ -7,8 +7,7 @@ use App\Models\UserMessages;
 
 class  UserMessagesRepository implements UserMessagesRepositoryInterface{
 
-    public function getAll(string $search = '', bool $trashed = false, $type)
-    {
+    public function getAll(string $search = '', bool $trashed = false, $type = 'Contact'){
        return  UserMessages::
        search('message', $search)
        ->isTrashed($trashed)
@@ -17,13 +16,27 @@ class  UserMessagesRepository implements UserMessagesRepositoryInterface{
     }
 
 
-    public function remove($message)
-    {
+    public function getById($id){
+      # code
+    }
+
+    public function add($data){
+        # code...
+    }
+
+    public function update($id, $data){
+        # code...
+    }
+
+    public function remove($message){
       return UserMessages::find($message)->delete();
     }
 
-    public function restore($message)
-    {
+    public function restore($message){
         return UserMessages::withTrashed()->find($message)->restore();
+    }
+
+    public function toggleActive($id, bool $active){
+        # code...
     }
 }
