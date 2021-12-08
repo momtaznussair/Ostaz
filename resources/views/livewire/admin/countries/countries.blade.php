@@ -67,13 +67,14 @@
                 <div class="modal-body">
                     <div class="row form-group">
                         <div class="col">
-                            {!! Form::label('name', __('Name'), ['class' => 'label-required']) !!}
-                            <select wire:model='name' class="custom-select" name="name" id="name">
-                                @foreach ($allCountries as $country)
-                                <option value="" selected>{{__('Select one')}}</option>
-                                    <option value="{{$country}}">{{$country}}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore>
+                                {!! Form::label('CountryName', __('Name'), ['class' => 'label-required']) !!}
+                                <select name="name" id="CountryName" class="select2" style="width: 100%">
+                                    @foreach ($allCountries as $country)
+                                        <option value="{{$country}}">{{$country}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             @error('name') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div>@enderror
                         </div>
                     </div>
@@ -88,3 +89,16 @@
     </div>
     {{--end of add modal --}}
 </div>
+
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#CountryName').select2();
+        $('#CountryName').on('change', function(e) {
+            let data = $('#CountryName').select2("val");
+            console.log(data);
+            @this.set('name', data);
+        });
+    });
+</script>
+@endsection

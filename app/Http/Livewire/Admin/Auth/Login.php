@@ -28,10 +28,10 @@ class Login extends Component
     {
        $credentials = $this->validate();
 
-       if (Auth::guard('admin')->attempt($credentials, $this->rememberMe)) {
+       if(Auth::guard('admin')->attempt($credentials, $this->rememberMe)) {
 
-        return redirect()->intended('/admin');
-    }
+            return redirect()->intended('/admin');
+        }
 
     session()->flash('error', __('The provided credentials do not match our records.'));
     

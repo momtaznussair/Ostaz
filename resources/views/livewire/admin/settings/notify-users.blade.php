@@ -4,7 +4,7 @@
             <div class="row align-items-center">
                 {!! Form::label(null, __('To'), ['class' => 'col-sm-2']) !!}
                 <div class="col-sm-10">
-                {!! Form::select('to', [null => __('All'),  'Instructor' => __('Instructors'), 'Student' => __('Students')], null, ['wire:model' => 'userType', 'class' => ['text-center']]) !!}
+                {!! Form::select('to', [null => __('All'),  'Instructor' => __('Instructors'), 'Student' => __('Students')], null, ['wire:model' => 'userType', 'class' => ['text-center', 'custom-select', 'p-1' ], 'style' => 'width:5rem']) !!}
                 @error('userType') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div> @enderror
                 </div>
             </div>

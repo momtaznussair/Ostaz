@@ -6,8 +6,8 @@ use App\Models\Country;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
-use App\Contracts\CountryRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Repositories\Contracts\CountryRepositoryInterface;
 use PragmaRX\Countries\Package\Countries as AllCountries; 
 
 
@@ -24,7 +24,7 @@ class Countries extends Component
     {
         $this->authorize('Country_access');
         return view('livewire.admin.countries.countries', [
-            'countries' => $countryRepository->getAll($this->search, $this->trashed, $this->active),
+            'countries' => $countryRepository->getAll($this->active, ['isTrashed' => $this->trashed, 'search' => $this->search]),
         ]);
     }
 
@@ -46,6 +46,11 @@ class Countries extends Component
         $this->name = $country->name;
     }
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function save(CountryRepositoryInterface $countryRepository)
     {
         $this->authorize('Country_create');
@@ -57,7 +62,7 @@ class Countries extends Component
     public function delete(CountryRepositoryInterface $countryRepository)
     {
         $this->authorize('Country_delete');
-        $countryRepository->remove($this->country) &&
+        $countryRepository->remove($this->country->id) &&
         $this->emit('success', __('Deleted successfully!'));
         $this->reset('name');
     }
@@ -65,7 +70,7 @@ class Countries extends Component
     public function toggleActive(Bool $active, CountryRepositoryInterface $countryRepository)
     {
         $this->authorize('Country_edit');
-        $countryRepository->toggleActive($this->country, $active) && 
+        $countryRepository->toggleActive($this->country->id, $active) && 
         $this->emit('success', __('Changes Saved!'));
     }
 

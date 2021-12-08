@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Admin\Instructors;
 
 use App\Models\User;
 use Livewire\Component;
-use App\Contracts\CategoryRepositoryInterface;
-use App\Contracts\CourseRepositoryInterface;
+use App\Repositories\Contracts\CourseRepositoryInterface;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 
 class AssignCourseToInstructor extends Component
 {

@@ -1,10 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
-use App\Http\Controllers\AdminHomeController;
-use App\Mail\ResponesToUser;
-use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::get('/', function () {
@@ -74,3 +73,5 @@ function()
 	/** End Of Admin ROUTES GROUP **/
     });
 });
+
+Route::view('login', 'welcome');

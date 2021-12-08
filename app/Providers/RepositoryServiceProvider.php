@@ -12,7 +12,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         foreach(App::call(new GetModels)->add('Role') as $model){
-         $this->app->bind("App\Contracts\\{$model}RepositoryInterface", "App\Repositories\\{$model}Repository");
+         $this->app->bind("App\Repositories\Contracts\\{$model}RepositoryInterface", "App\Repositories\SQL\\{$model}Repository");
         }
     }
     

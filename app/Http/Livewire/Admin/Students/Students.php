@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Admin\Students;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Students extends Component
@@ -23,11 +23,16 @@ class Students extends Component
         $this->authorize('User_access');
 
         return view('livewire.admin.students.students', [
-            'students' => $userRepository->getAll($this->search, $this->trashed, $this->active, 'Student'),
+            'students' => $userRepository->getAll($this->active, ['type' => 'Student', 'search'=>  $this->search, 'isTrashed' => $this->trashed]),
         ]);
     }
 
     public function mount() { $this->user = new User(); }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function select(User $user, String $purpose = null){
         //if it's the edit button that was pressed we just send the selected Admin to the updateOrCreate Component
@@ -40,7 +45,7 @@ class Students extends Component
 
     public function delete(UserRepositoryInterface $userRepository){
         $this->authorize('User_delete');
-        $userRepository->remove($this->user) && 
+        $userRepository->remove($this->user->id) && 
         $this->emit('success', __('Deleted successfully!'));
     }
 
@@ -53,7 +58,7 @@ class Students extends Component
     public function toggleActive(Bool $active, UserRepositoryInterface $userRepository)
     {
        $this->authorize('User_edit');
-       $userRepository->toggleActive($this->user, $active) && 
+       $userRepository->toggleActive($this->user->id, $active) && 
        $this->emit('success', __('Changes Saved!'));
     }
 }

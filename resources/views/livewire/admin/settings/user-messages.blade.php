@@ -33,7 +33,6 @@
                         <td>{{ $message->name }}</td>
                         <td>{{ $message->email }}</td>
                         <td>{{ $message->phone }}</td>
-                        <td>{{ $message->created_at->diffForHumans() }}</td>
                         <td>
                             @can('UserMessages_view')
                             <a  

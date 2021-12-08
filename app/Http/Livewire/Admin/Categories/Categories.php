@@ -5,8 +5,8 @@ namespace App\Http\Livewire\Admin\Categories;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\WithPagination;
-use App\Contracts\CategoryRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 
 class Categories extends Component
 {
@@ -20,7 +20,7 @@ class Categories extends Component
     {
         $this->authorize('Category_access');
         return view('livewire.admin.categories.categories', [
-            'categories' => $category->getAll($this->search, $this->trashed, $this->active)
+            'categories' => $category->getAll($this->active, ['isTrashed' => $this->trashed])
         ]);
     }
 
@@ -55,7 +55,7 @@ class Categories extends Component
     public function delete(CategoryRepositoryInterface $categoryRepository)
     {
         $this->authorize('Category_delete');
-        $categoryRepository->remove($this->category) &&
+        $categoryRepository->remove($this->category->id) &&
         $this->emit('success', __('Deleted successfully!'));
         $this->reset('name');
     }
@@ -63,7 +63,7 @@ class Categories extends Component
     public function toggleActive(Bool $active, CategoryRepositoryInterface $categoryRepository)
     {
         $this->authorize('Category_edit');
-       $categoryRepository->toggleActive($this->category, $active) && 
+       $categoryRepository->toggleActive($this->category->id, $active) && 
        $this->emit('success', __('Changes Saved!'));
     }
 

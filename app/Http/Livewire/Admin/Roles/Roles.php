@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Roles;
 
-use App\Contracts\RoleRepositoryInterface;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
+use App\Repositories\Contracts\RoleRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Roles extends Component

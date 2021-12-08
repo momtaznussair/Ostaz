@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Settings;
 
-use App\Contracts\UserRepositoryInterface;
-use App\Notifications\NotifyUser;
-use Illuminate\Support\Facades\Notification;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use App\Notifications\NotifyUser;
+use Illuminate\Support\Facades\Notification;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class NotifyUsers extends Component
 {
@@ -31,7 +31,7 @@ class NotifyUsers extends Component
     public function notify(UserRepositoryInterface $userRepository)
     {
        $content = $this->Validate();
-       $users = $userRepository->getAll('', false, true, $this->userType);
+       $users = $userRepository->getAll(true, ['type' => $this->userType]);
        Notification::send($users->all(), new NotifyUser($content));
        $this->reset();
        $this->emit('Notified');

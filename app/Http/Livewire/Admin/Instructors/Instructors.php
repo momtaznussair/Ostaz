@@ -5,9 +5,8 @@ namespace App\Http\Livewire\Admin\Instructors;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use PhpParser\Node\Expr\Cast\String_;
 
 class Instructors extends Component
 {
@@ -23,13 +22,18 @@ class Instructors extends Component
     {
         $this->authorize('User_access');
         return view('livewire.admin.instructors.instructors', [
-            'instructors' => $userRepository->getAll($this->search, $this->trashed, $this->active, 'Instructor'),
+            'instructors' => $userRepository->getAll($this->active, ['type' => 'Instructor', 'search'=>  $this->search, 'isTrashed' => $this->trashed]),
         ]);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 
     public function mount() { $this->user = new User(); }
 
-    public function select(User $user, String $purpose){
+    public function select(User $user, $purpose = null){
         //if it's the edit button that was pressed we just send the selected Admin to the updateOrCreate Component
         if($purpose == 'toUpdate'){ return $this->emitTo('admin.users.update-or-create-user', 'userSelected', ['user' => $user]); }
         //if it's the courses button that was pressed we just send the selected Admin to the updateOrCreate Component
@@ -40,7 +44,7 @@ class Instructors extends Component
 
     public function delete(UserRepositoryInterface $userRepository){
         $this->authorize('User_delete');
-        $userRepository->remove($this->user) && 
+        $userRepository->remove($this->user->id) && 
         $this->emit('success', __('Deleted successfully!'));
     }
 
@@ -53,7 +57,7 @@ class Instructors extends Component
     public function toggleActive(Bool $active, UserRepositoryInterface $userRepository)
     {
        $this->authorize('User_edit');
-       $userRepository->toggleActive($this->user, $active) && 
+       $userRepository->toggleActive($this->user->id, $active) && 
        $this->emit('success', __('Changes Saved!'));
     }
 }

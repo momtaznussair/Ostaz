@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Admin\Reports;
 
-use App\Contracts\CountryRepositoryInterface;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Repositories\Contracts\CountryRepositoryInterface;
 
 class Students extends Component
 {
@@ -21,7 +21,7 @@ class Students extends Component
         $this->authorize('Student_report_view');
 
         return view('livewire.admin.reports.students', [
-            'students' => $userRepository->getAll($this->search, false, true, 'Student', $this->countryFilter),
+            'students' => $userRepository->getAll(true, ['type' => 'Student','country' => $this->countryFilter, 'search' => $this->search]),
             'countries' => $countryRepository->getAll()->pluck('name', 'id')
         ]);
     }
@@ -31,5 +31,10 @@ class Students extends Component
     public function select(User $user, String $purpose = null){
         //if it's the courses button that was pressed we just send the selected Admin to the updateOrCreate Component
         if($purpose == 'toViewCourses'){ return $this->emitTo('admin.students.assign-courses-to-students', 'userSelected', ['user' => $user]); }
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 }

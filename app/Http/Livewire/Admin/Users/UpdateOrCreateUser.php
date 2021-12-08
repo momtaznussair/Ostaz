@@ -7,8 +7,8 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
-use App\Contracts\CountryRepositoryInterface;
-use App\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\CountryRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UpdateOrCreateUser extends Component

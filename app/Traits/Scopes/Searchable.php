@@ -4,8 +4,8 @@ namespace App\Traits\Scopes;
 
 trait Searchable {
     
-    public function scopeSearch($query, String $field = 'name', String $keyword)
+    public function scopeSearch($query, String $keyword)
     {
-        return $query->where($field, 'LIKE', "%$keyword%");
+        return $query->where('name', 'LIKE', "%$keyword%");
     }
 }

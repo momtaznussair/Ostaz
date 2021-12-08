@@ -9,6 +9,7 @@ use App\Traits\Scopes\Searchable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Traits\Scopes\ActiveScope;
 use App\Traits\Scopes\CountryScope;
+use App\Traits\Scopes\TypeScope;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
@@ -18,7 +19,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Searchable, IsTrashed, ActiveScope, 
-    SoftDeletes, CountryScope, SoftCascadeTrait;
+    SoftDeletes, CountryScope, SoftCascadeTrait, TypeScope;
 
    
     protected $fillable = [

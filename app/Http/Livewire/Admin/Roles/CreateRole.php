@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\Roles;
 
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
-use App\Contracts\RoleRepositoryInterface;
+use App\Repositories\Contracts\RoleRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CreateRole extends Component

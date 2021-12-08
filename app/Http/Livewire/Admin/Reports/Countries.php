@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Reports;
 
-use App\Contracts\CountryRepositoryInterface;
-use App\Models\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Repositories\Contracts\CountryRepositoryInterface;
 
 class Countries extends Component
 {
@@ -18,8 +17,13 @@ class Countries extends Component
     {
         $this->authorize('Country_report_view');
         return view('livewire.admin.reports.countries', [
-            'countries' => $countryRepository->getAll($this->search)
+            'countries' => $countryRepository->getAll(true, ['search' => $this->search])
         ]);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 
 }

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Repositories\Contracts;
 
-use App\Models\Country;
 
 interface CountryRepositoryInterface extends RepositoryInterface{
     // Country Specific Methods

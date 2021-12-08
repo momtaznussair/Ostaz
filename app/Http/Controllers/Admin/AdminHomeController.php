@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Contracts\CategoryRepositoryInterface;
-use App\Contracts\CountryRepositoryInterface;
-use App\Contracts\CourseRepositoryInterface;
-use App\Contracts\UserRepositoryInterface;
-use App\Models\User;
-use App\Repositories\CityRepository;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\CourseRepositoryInterface;
+use App\Repositories\Contracts\CountryRepositoryInterface;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Contracts\CityRepositoryInterface;
 
 class AdminHomeController extends Controller
 {
     public function index(UserRepositoryInterface $userRepo, 
         CategoryRepositoryInterface $categoryRepo, CourseRepositoryInterface $courseRepo,
-         CountryRepositoryInterface $countryRepo, CityRepository $cityRepo)
+         CountryRepositoryInterface $countryRepo, CityRepositoryInterface $cityRepo)
     {
         //users
         $users = $userRepo->getAll();

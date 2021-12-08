@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Repositories\Contracts;
 
 
 interface CourseRepositoryInterface extends RepositoryInterface{

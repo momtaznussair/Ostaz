@@ -6,8 +6,8 @@ use Livewire\Component;
 use App\Mail\ResponesToUser;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Mail;
-use App\Contracts\UserMessagesRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Repositories\Contracts\UserMessagesRepositoryInterface;
 
 class UserMessages extends Component
 {
@@ -21,7 +21,7 @@ class UserMessages extends Component
         $this->authorize('UserMessages_access');
 
         return view('livewire.admin.settings.user-messages', [
-            'messages' => $messagesRepository->getAll($this->search, $this->trashed, $this->type)
+            'messages' => $messagesRepository->getAll(null, ['search' => $this->search, 'isTrashed' =>  $this->trashed, 'type' => $this->type])
         ]);
     }
 

@@ -28,14 +28,6 @@
                          </td>
                          <td>{{$city->country  ? $city->country->name : __('Deleted')}}</td>
                          <td>
-                             @empty($city->deleted_at)
-                                 @can('city_edit')
-                                 <a  
-                                     wire:click="select({{$city->id}})"
-                                     data-toggle="modal" href="#update" class="btn btn-sm btn-info"
-                                     title="{{__('Edit')}}"><i class="las la-pen"></i></a> 
-                                 @endcan
-                             @endempty
                              @can('city_delete')
  
                              @if ($city->deleted_at)
@@ -77,24 +69,22 @@
                 <div class="modal-body">
                     <div class="row form-group">
                         <div class="col">
-                            <div>
+                            <div wire:ignore>
                                 {!! Form::label('country_id', __('Country'), ['class' => 'label-required']) !!}
+                                {!! Form::select('country_id', $countries, null, ['id' => 'country_id', 'class' => ['form-control', 'select2'], 'placeholder' => '', 'style' => 'width:100%']) !!}
                             </div>
-                            {!! Form::select('country_id', $countries->prepend(__('Select one'), ''), null, ['wire:model' => 'city.country_id','wire:change' => 'getCities', 'id' => 'country_id', 'class' => ['form-control']]) !!}
                             @error('city.country_id') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div> @enderror
                         </div>
                     </div>
     
                     <div class="row form-group">
                         <div class="col">
-                            <div>
-                                {!! Form::label('name', __('City'), ['class' => 'label-required']) !!}
+                            <div wire:ignore>
+                                {!! Form::label('CityName', __('City'), ['class' => 'label-required']) !!}
+                                <Select wire:model='city.name' id="CityName", class="form-control select2" style="width:100%">
+                                    
+                                </Select>
                             </div>
-                            <Select wire:model='city.name' id="name", class="form-control">
-                                @foreach ($allCitiesOfSelectedCountry as $city)
-                                    <option value="{{$city}}">{{$city}}</option>
-                                @endforeach
-                            </Select>
                             @error('city.name') <div class="tx-danger mt-1"><strong>{{ $message }}</strong></div> @enderror
                         </div>
                     </div>
@@ -109,3 +99,27 @@
     </div>
         {{--end of add modal --}}
  </div>
+
+
+ @section('js')
+<script>
+    $(document).ready(function() {
+        $('#country_id').on('change', function(e) {
+            let data = $('#country_id').select2("val");
+            @this.set('city.country_id', data);
+            @this.getCities().then(cities => {
+                $('#CityName').empty();
+                $('#CityName').append(new Option());
+                cities.forEach(element => {
+                    $('#CityName').append(new Option(element, element));
+                });
+            })
+        });
+
+        $('#CityName').on('change', function(e) {
+            let data = $('#CityName').select2("val");
+            @this.set('city.name', data);
+        });
+    });
+</script>
+@endsection

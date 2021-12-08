@@ -5,9 +5,9 @@ namespace App\Http\Livewire\Admin\Admins;
 use App\Models\Admin;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Contracts\AdminRepositoryInterface;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\WithFileUploads;
+use App\Repositories\Contracts\AdminRepositoryInterface;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Admins extends Component
 {
@@ -23,8 +23,13 @@ class Admins extends Component
     {
         $this->authorize('Admin_access');
         return view('livewire.admin.admins.admins', [
-            'admins' => $adminRepository->getAll($this->search, $this->trashed, $this->active),
+            'admins' => $adminRepository->getAll($this->active, ['isTrashed' => $this->trashed,  'Search' => $this->search]),
         ]);
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
     }
 
     public function mount(){ $this->admin = new Admin(); }
@@ -39,7 +44,7 @@ class Admins extends Component
 
     public function delete(AdminRepositoryInterface $adminRepository){
         $this->authorize('Admin_delete');
-        $adminRepository->remove($this->admin) && 
+        $adminRepository->remove($this->admin->id) && 
         $this->emit('success', __('Deleted successfully!'));
     }
 
@@ -52,7 +57,7 @@ class Admins extends Component
     public function toggleActive(Bool $active, AdminRepositoryInterface $adminRepository)
     {
        $this->authorize('Admin_edit');
-       $adminRepository->toggleActive($this->admin, $active) && 
+       $adminRepository->toggleActive($this->admin->id, $active) && 
        $this->emit('success', __('Changes Saved!'));
     }
 
