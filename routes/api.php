@@ -7,15 +7,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetCitiesController;
 use App\Http\Controllers\GetCountriesController;
 use App\Http\Controllers\Api\Auth\TokenController;
-
+use App\Http\Controllers\Api\Profile\ProfileController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
+    //auth
     Route::post('logout', [TokenController::class, 'logout']);
+    //profile
+    Route::get('profile', [ProfileController::class, 'profile']);
+    Route::post('update-basic-data', [ProfileController::class, 'updateBasicData']);
+    Route::post('update-address-phone', [ProfileController::class, 'updateAddressAndPhone']);
+    Route::post('update-password', [ProfileController::class, 'updatePassword']);
     
 });
 
