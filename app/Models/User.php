@@ -4,22 +4,25 @@ namespace App\Models;
 
 use App\Models\City;
 use App\Models\Course;
+use App\Notifications\UserResetPassword;
 use App\Traits\Scopes\IsTrashed;
+use App\Traits\Scopes\TypeScope;
 use App\Traits\Scopes\Searchable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Traits\Scopes\ActiveScope;
 use App\Traits\Scopes\CountryScope;
-use App\Traits\Scopes\TypeScope;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanResetPasswordContract
 {
     use HasApiTokens, HasFactory, Notifiable, Searchable, IsTrashed, ActiveScope, 
-    SoftDeletes, CountryScope, SoftCascadeTrait, TypeScope;
+    SoftDeletes, CountryScope, SoftCascadeTrait, TypeScope, CanResetPassword;
 
    
     protected $fillable = [
@@ -87,6 +90,12 @@ class User extends Authenticatable
     public function studentCourses()
     {
         return $this->belongsToMany(Course::class)->withTimestamps();
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $url = route('reset-password', $token);
+        $this->notify(new UserResetPassword($url));
     }
 
 }

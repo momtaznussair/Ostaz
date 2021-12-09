@@ -3,23 +3,24 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminResetPassword extends Notification
+class UserResetPassword extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $token;
+    public $url;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($url)
     {
-        $this->token = $token;
+        $this->url = $url;
     }
 
     /**
@@ -44,7 +45,7 @@ class AdminResetPassword extends Notification
         return (new MailMessage)
             ->greeting(__('Hello!'))
             ->line(__('You are receiving this email because we received a password reset request for your account.'))
-            ->action(__('Reset Password'), route('admin.password.reset', [$this->token, $notifiable->email]))
+            ->action(__('Reset Password'), $this->url)
             ->line(__("No Further Actions Required if you didn't request this."))
             ->line(__('Thank you for using Ostaz!'));
     }

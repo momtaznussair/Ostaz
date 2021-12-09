@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Contracts\UserRepositoryInterface;
 use App\Traits\Api\ApiResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\UserRegisterRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use Illuminate\Http\Request;
 
 class TokenController extends Controller
 {
@@ -49,5 +50,11 @@ class TokenController extends Controller
             $credentials['email'] = $request->emailOrPhone;
         }
         return $credentials;
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return $this->apiResponse(null,'User logged out successfully',200);
     }
 }

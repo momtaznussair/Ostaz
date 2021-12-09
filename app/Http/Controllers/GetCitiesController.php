@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\CountryRepositoryInterface;
 use App\Traits\Api\ApiResponse;
+use App\Repositories\Contracts\CountryRepositoryInterface;
 
 class GetCitiesController extends Controller
 {

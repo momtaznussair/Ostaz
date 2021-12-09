@@ -6,7 +6,7 @@ trait ApiResponse {
     
     public function apiResponse($data = null, $message='', $code = 200){
         $array = [
-            'status' => in_array($code , $this->successCodes()),
+            'success' => in_array($code , $this->successCodes()),
             'message' => $message,
             'data' => $data,
         ];
