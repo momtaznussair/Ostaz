@@ -21,7 +21,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('update-basic-data', [ProfileController::class, 'updateBasicData']);
     Route::post('update-address-phone', [ProfileController::class, 'updateAddressAndPhone']);
     Route::post('update-password', [ProfileController::class, 'updatePassword']);
-    
+    Route::get('remove-image', [ProfileController::class, 'removeImage']);
 });
 
 //get available counties and cities

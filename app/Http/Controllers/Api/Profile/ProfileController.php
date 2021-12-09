@@ -48,4 +48,12 @@ class ProfileController extends Controller
         }
         return $this->UnknownError();
     }
+
+    public function removeImage(Request $request)
+    {
+        if($this->userRepository->removeImage($request->user()->id)){
+            return $this->apiResponse(null , 'Image Removed Successfully!');
+        }
+        return $this->UnknownError();
+    }
 }
