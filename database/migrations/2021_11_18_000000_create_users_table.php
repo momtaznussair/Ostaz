@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->boolean('active')->default(true);
             $table->foreignId('city_id')->constrained()->onDelete('cascade');
-            $table->string('avatar')->default('users/default.jpg');
+            $table->string('avatar')->nullable();
             $table->unsignedInteger('age');
             $table->string('phone');
             $table->enum('gender', ['m', 'f']);

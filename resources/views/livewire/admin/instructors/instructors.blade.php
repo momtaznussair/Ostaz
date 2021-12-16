@@ -23,7 +23,7 @@
                      <tr>
                          <td>{{$loop->iteration}}</td>
                          <td>
-                            <img alt="{{$instructor->name}}" src="{{asset('storage/' . $instructor->avatar)}}" class="img-fluid img-thumbnail rounded-circle" style="max-width: 6rem">
+                            <img alt="{{$instructor->name}}" src="{{$instructor->avatar_path}}" class="img-fluid img-thumbnail rounded-circle" style="max-width: 6rem">
                         </td>
                          <td>{{$instructor->name}}</td>
                          <td>{{$instructor->gen}}</td>

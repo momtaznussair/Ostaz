@@ -19,7 +19,7 @@
                     <tr>
                        <td>{{$loop->iteration}}</td>
 					   <td>
-						   <img alt="{{$Admin->name}}" src="{{asset('storage/' . $Admin->avatar)}}" class="img-fluid img-thumbnail rounded-circle" style="max-width: 6rem">
+						   <img alt="{{$Admin->name}}" src="{{ $Admin->avatar_path }}" class="img-fluid img-thumbnail rounded-circle" style="max-width: 6rem">
 					   </td>
 					   <td>{{$Admin->name}}</td>
 					   <td>{{$Admin->email}}</td>

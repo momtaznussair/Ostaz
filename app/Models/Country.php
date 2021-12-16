@@ -19,6 +19,10 @@ class Country extends Model
         'active'
     ];
 
+    public static  function filters() {
+        return ['isActive', 'isTrashed', 'Search'];
+    }
+
     protected $appends = ['instructors', 'students', 'courses'];
 
      /**

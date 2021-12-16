@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GetCitiesController;
 use App\Http\Controllers\GetCountriesController;
 use App\Http\Controllers\Api\Auth\TokenController;
+use App\Http\Controllers\Api\Instructor\InstructorController;
 use App\Http\Controllers\Api\Profile\ProfileController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -22,6 +23,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('update-address-phone', [ProfileController::class, 'updateAddressAndPhone']);
     Route::post('update-password', [ProfileController::class, 'updatePassword']);
     Route::get('remove-image', [ProfileController::class, 'removeImage']);
+    //instructors
+    Route::get('instrcutors', [InstructorController::class, 'index']);
 });
 
 //get available counties and cities

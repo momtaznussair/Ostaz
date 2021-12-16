@@ -3,13 +3,13 @@
         <div class="pl-0">
             <div class="main-profile-overview">
                 <div class="main-img-user profile-user">
-                    <img alt="" src="{{$avatar ? $avatar->temporaryUrl() : asset('storage/' . $admin->avatar)}}">
+                    <img alt="" src="{{$avatar ? $avatar->temporaryUrl() : $admin->avatar_path }}">
                     <label for="avatar" class="fas fa-camera profile-edit" type="button" title="{{__('change Image')}}">
                     </label>
                     <div class="row d-flex justify-content-start" x-data="{confirm : false, deleted : false}">
                         @error('avatar') <div class="tx-danger"><strong>{{ $message }}</strong></div> @enderror
                         {{-- delete  image button --}}
-                        @if ($admin->avatar != 'admins/default.jpg')
+                        @if ($admin->avatar_path != asset('storage/admins/default.jpg'))
                             <a type="button"  wire:click='confirmDelete' class="fas fa-eraser  tx-18 mx-3" title="{{__('Delete Image')}}"></a>
                         @endif
                         {{-- confirm and delete success message component --}}

@@ -27,13 +27,20 @@ class Admin extends Authenticatable implements CanResetPassword
         'active'
     ];
 
+    public static  function filters() {
+        return ['isActive', 'isTrashed', 'Search'];
+    }
+
     protected $attributes = [
         'avatar' => 'admins/default.jpg',
         'active' => true
     ];
 
-    public function sendPasswordResetNotification($token)
-    {
+    public function sendPasswordResetNotification($token) {
         $this->notify(new AdminResetPassword($token));
+    }
+
+    public function getAvatarPathAttribute() {
+        return !is_null($this->avatar) ? asset('storage/' . $this->avatar) : asset('storage/admins/default.jpg');
     }
 }

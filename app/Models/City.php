@@ -20,6 +20,10 @@ class City extends Model
         'active'
     ];
 
+    public static  function filters() {
+        return ['isActive', 'isTrashed', 'Search'];
+    }
+
      /**
      * The relations that should be soft deleted when this gets soft deleted.
      *

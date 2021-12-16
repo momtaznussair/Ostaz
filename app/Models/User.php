@@ -38,6 +38,10 @@ class User extends Authenticatable implements CanResetPasswordContract
         'type'
     ];
 
+    public static  function filters() {
+        return ['isActive', 'isTrashed', 'Search', 'country'];
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -96,6 +100,10 @@ class User extends Authenticatable implements CanResetPasswordContract
     {
         $url = route('reset-password', $token);
         $this->notify(new UserResetPassword($url));
+    }
+
+    public function getAvatarPathAttribute() {
+        return !is_null($this->avatar) ? asset('storage/' . $this->avatar) : asset('storage/admins/default.jpg');
     }
 
 }

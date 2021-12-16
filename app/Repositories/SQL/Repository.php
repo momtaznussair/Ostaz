@@ -13,10 +13,15 @@ abstract class Repository implements RepositoryInterface{
     }
 
     public function getAll($active = true, $filters = [], $paginate = 15){
-        //get only active 
-        $query = $this->model->query()->isActive($active);
-        //applying filters if exists
+        $query = $this->model->query();
+        //get only active -"if it has active status"
+        $query->when(collect($this->model::filters())->contains('isActive'), function ($query)  use ($active){
+            $query->isActive($active);
+        });
+        //applying filters
         foreach($filters as $filter => $value){
+            //only if the model has it in it's filters property
+            collect($this->model::filters())->contains($filter) &&
             $query->{$filter}($value);
         }
 

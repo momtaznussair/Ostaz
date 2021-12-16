@@ -23,6 +23,10 @@ class Category extends Model
         'active' => true
     ];
 
+    public static  function filters() {
+        return ['isActive', 'isTrashed', 'Search'];
+    }
+
     protected $appends = ['instructors'];
 
 

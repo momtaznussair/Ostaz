@@ -12,15 +12,7 @@ class RoleRepository extends Repository implements RoleRepositoryInterface{
         Parent::__construct($role);
     }
 
-    public function getAll($active = true, $filters = [], $paginate = 15){
-        $query = $this->model->query();
-        //applying filters if exists
-        foreach($filters as $filter => $value){
-            $query->{$filter}($value);
-        }
-
-        return $query->paginate($paginate);
-    }
+    
 
     public function add($attributes){
         $role = Parent::add(['name' => $attributes['name']]);

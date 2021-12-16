@@ -21,6 +21,10 @@ class Course extends Model
         'category_id'
     ];
 
+    public static  function filters() {
+        return ['isActive', 'isTrashed', 'Search', 'category'];
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

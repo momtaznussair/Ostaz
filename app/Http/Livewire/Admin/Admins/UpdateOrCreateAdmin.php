@@ -6,8 +6,8 @@ use App\Models\Admin;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rules\Password;
-use App\Contracts\RoleRepositoryInterface;
 use App\Repositories\Contracts\AdminRepositoryInterface;
+use App\Repositories\Contracts\RoleRepositoryInterface;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class UpdateOrCreateAdmin extends Component
