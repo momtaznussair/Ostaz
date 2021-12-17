@@ -19,38 +19,42 @@ class Country extends Model
         'active'
     ];
 
+    /**
+    * returns filters that can be applied to this model by getAll() method in Repository
+    * ckeck App\Repositories\SQL\Repository
+    */
     public static  function filters() {
         return ['isActive', 'isTrashed', 'Search'];
     }
 
-    protected $appends = ['instructors', 'students', 'courses'];
-
-     /**
+    
+    /**
      * The relations that should be soft deleted when this gets soft deleted.
      *
      * @var array
      */
     protected $softCascade = ['cities'];
-
-
+    
+    
     public function cities(){
         return $this->hasMany(City::class);
     }
-
-    public function users(){
-        return $this->hasManyThrough(User::class, City::class);
+    
+    public function users($type = null){
+        return $this->hasManyThrough(User::class, City::class)
+            ->type($type);
+    }
+    
+    public function getInstructorsCountAttribute(){
+       return $this->users('Instructor')->count();
     }
 
-    public function getInstructorsAttribute(){
-       return $this->users()->where('type', 'Instructor');
+    public function getStudentsCountAttribute(){
+       return $this->users('Student')->count();
     }
 
-    public function getStudentsAttribute(){
-       return $this->users()->where('type', 'Student');
-    }
-
-    public function getCoursesAttribute()
-    {
-        return Course::whereIn('instructor_id', $this->instructors->get()->pluck('id'));
+    public function getCoursesCountAttribute() {
+        return Course::whereIn('instructor_id', $this->users('Instructor')->pluck('users.id'))
+        ->count();
     }
 }

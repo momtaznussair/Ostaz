@@ -38,8 +38,12 @@ class User extends Authenticatable implements CanResetPasswordContract
         'type'
     ];
 
+     /**
+    * returns filters that can be applied to this model by getAll() method in Repository
+    * ckeck App\Repositories\SQL\Repository
+    */
     public static  function filters() {
-        return ['isActive', 'isTrashed', 'Search', 'country'];
+        return ['isActive', 'isTrashed', 'Search', 'country', 'type'];
     }
 
     /**
@@ -59,10 +63,6 @@ class User extends Authenticatable implements CanResetPasswordContract
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
-
-    protected $attributes = [
-        'avatar' => 'users/default.jpg'
     ];
 
     /**
@@ -103,7 +103,7 @@ class User extends Authenticatable implements CanResetPasswordContract
     }
 
     public function getAvatarPathAttribute() {
-        return !is_null($this->avatar) ? asset('storage/' . $this->avatar) : asset('storage/admins/default.jpg');
+        return !is_null($this->avatar) ? asset('storage/' . $this->avatar) : asset('storage/users/default.jpg');
     }
 
 }

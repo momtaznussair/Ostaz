@@ -22,7 +22,7 @@ class Instructors extends Component
     {
         $this->authorize('User_access');
         return view('livewire.admin.instructors.instructors', [
-            'instructors' => $userRepository->getAll($this->active, ['type' => 'Instructor', 'search'=>  $this->search, 'isTrashed' => $this->trashed]),
+            'instructors' => $userRepository->getAll($this->active, ['type' => 'Instructor', 'Search'=>  $this->search, 'isTrashed' => $this->trashed]),
         ]);
     }
 

@@ -29,6 +29,7 @@ class PermissionSeeeder extends Seeder
 
          // create extra permissions
          $permissions = [
+            'Reports_view',
             'Country_report_view',
             'Student_report_view',
             'Course_report_view',

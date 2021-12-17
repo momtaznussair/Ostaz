@@ -23,7 +23,7 @@ class Courses extends Component
         $this->authorize('Course_access');
         return view('livewire.admin.courses.courses', [
             'courses' => $courseRepository
-            ->getAll($this->active, ['isTrashed' => $this->trashed, 'search' => $this->search, 'withCount' => 'student', 'with' => ['instructor', 'category']]),
+            ->getAll($this->active, ['isTrashed' => $this->trashed, 'Search' => $this->search, 'withCount' => 'student', 'with' => ['instructor', 'category']]),
             'categories' => $category->getAll()->pluck('name', 'id'),
             'instructors' => $userRepository->getAll(true, ['type' => 'Instructor'])->pluck('name', 'id')
         ]);

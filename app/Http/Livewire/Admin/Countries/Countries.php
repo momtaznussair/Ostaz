@@ -24,7 +24,7 @@ class Countries extends Component
     {
         $this->authorize('Country_access');
         return view('livewire.admin.countries.countries', [
-            'countries' => $countryRepository->getAll($this->active, ['isTrashed' => $this->trashed, 'search' => $this->search]),
+            'countries' => $countryRepository->getAll($this->active, ['isTrashed' => $this->trashed,  'Search' => $this->search]),
         ]);
     }
 

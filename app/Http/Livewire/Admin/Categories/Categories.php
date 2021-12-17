@@ -20,7 +20,7 @@ class Categories extends Component
     {
         $this->authorize('Category_access');
         return view('livewire.admin.categories.categories', [
-            'categories' => $category->getAll($this->active, ['isTrashed' => $this->trashed])
+            'categories' => $category->getAll($this->active, ['isTrashed' => $this->trashed,  'Search' => $this->search])
         ]);
     }
 

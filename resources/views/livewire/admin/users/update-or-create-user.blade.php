@@ -10,7 +10,7 @@
                 {{-- image --}}
                 <div class="row main-profile-overview d-flex justify-content-center mb-3">
                     <div class="main-img-user profile-user">
-                        <img alt="" src="{{ $avatar ? $avatar->temporaryUrl() : asset('storage/' . $user->avatar) }}">
+                        <img alt="" src="{{ $avatar ? $avatar->temporaryUrl() : $user->avatar_path }}">
                         <label for="avatar" class="fas fa-camera profile-edit" type="button"
                             title="{{ __('chaneg Image') }}">
                         </label>

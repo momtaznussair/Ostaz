@@ -21,7 +21,7 @@ class Students extends Component
         $this->authorize('Student_report_view');
 
         return view('livewire.admin.reports.students', [
-            'students' => $userRepository->getAll(true, ['type' => 'Student','country' => $this->countryFilter, 'search' => $this->search]),
+            'students' => $userRepository->getAll(true, ['type' => 'Student','country' => $this->countryFilter, 'Search' => $this->search]),
             'countries' => $countryRepository->getAll()->pluck('name', 'id')
         ]);
     }

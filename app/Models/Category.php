@@ -19,10 +19,10 @@ class Category extends Model
         'name'
     ];
 
-    protected $attributes = [
-        'active' => true
-    ];
-
+    /**
+     * returns filters that can be applied to this model by getAll() method in Repository
+     * ckeck App\Repositories\SQL\Repository
+     */
     public static  function filters() {
         return ['isActive', 'isTrashed', 'Search'];
     }

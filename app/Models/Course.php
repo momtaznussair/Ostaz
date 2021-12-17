@@ -18,25 +18,28 @@ class Course extends Model
     protected $fillable = [
         'name',
         'active',
-        'category_id'
+        'category_id',
+        'instructor_id'
     ];
 
+
+     /**
+    * returns filters that can be applied to this model by getAll() method in Repository
+    * ckeck App\Repositories\SQL\Repository
+    */
     public static  function filters() {
-        return ['isActive', 'isTrashed', 'Search', 'category'];
+        return ['isActive', 'isTrashed', 'Search', 'category', 'with', 'withCount'];
     }
 
-    public function category()
-    {
+    public function category() {
         return $this->belongsTo(Category::class);
     }
 
-    public function instructor()
-    {
+    public function instructor() {
         return $this->belongsTo(User::class, 'instructor_id');
     }
 
-    public function student()
-    {
+    public function student()  {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 

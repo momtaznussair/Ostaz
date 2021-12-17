@@ -17,12 +17,11 @@ class Countries extends Component
     {
         $this->authorize('Country_report_view');
         return view('livewire.admin.reports.countries', [
-            'countries' => $countryRepository->getAll(true, ['search' => $this->search])
+            'countries' => $countryRepository->getAll(true, ['Search' => $this->search])
         ]);
     }
 
-    public function updatingSearch()
-    {
+    public function updatingSearch() {
         $this->resetPage();
     }
 

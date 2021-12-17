@@ -20,4 +20,12 @@ class UserMessages extends Model
         'message',
         'type'
     ];
+
+     /**
+    * returns filters that can be applied to this model by getAll() method in Repository
+    * ckeck App\Repositories\SQL\Repository
+    */
+    public static  function filters() {
+        return ['isActive', 'isTrashed', 'Search', 'type'];
+    }
 }

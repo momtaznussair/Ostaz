@@ -27,15 +27,14 @@ class Admin extends Authenticatable implements CanResetPassword
         'active'
     ];
 
+    /**
+     * returns filters that can be applied to this model by getAll() method in Repository
+     * ckeck App\Repositories\SQL\Repository
+     */
     public static  function filters() {
         return ['isActive', 'isTrashed', 'Search'];
     }
-
-    protected $attributes = [
-        'avatar' => 'admins/default.jpg',
-        'active' => true
-    ];
-
+    
     public function sendPasswordResetNotification($token) {
         $this->notify(new AdminResetPassword($token));
     }

@@ -27,9 +27,9 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $country->name }}</td>
-                        <td>{{ $country->courses->count() }}</td>
-                        <td>{{ $country->instructors->count() }}</td>
-                        <td>{{ $country->students->count() }}</td>
+                        <td>{{ $country->courses_count }}</td>
+                        <td>{{ $country->instructors_count }}</td>
+                        <td>{{ $country->students_count }}</td>
                     </tr>
                 @empty
                     <tr class="tx-center">

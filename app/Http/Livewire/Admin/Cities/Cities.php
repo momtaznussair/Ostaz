@@ -23,7 +23,7 @@ class Cities extends Component
         $this->countries =  $countryRepository->getAll()->pluck('name', 'id');
         return view('livewire.admin.cities.cities', [
             'cities' => $cityRepository
-            ->getAll($this->active, ['isTrashed' => $this->trashed, 'search' => $this->search]),
+            ->getAll($this->active, ['isTrashed' => $this->trashed,  'Search' => $this->search]),
         ]);
     }
 
