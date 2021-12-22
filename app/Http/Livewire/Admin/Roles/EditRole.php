@@ -32,21 +32,24 @@ class EditRole extends Component
     public function rules(){
         return [
             'name' => 'required|max:255|unique:roles,name,'. $this->role->id,
-            'permissions' => 'required|exists:permissions,id',
+            'permissions' => 'required|array',
+            'permissions.*' => 'exists:permissions,id'
     ];}
 
-    public function toggleSelectAll($status)
-    {
+    public function toggleSelectAll($status) {
         if($status){
-            return $this->permissions = $this->allPermissions->pluck('id');
+            return $this->permissions = $this->allPermissions->pluck('id', 'id');
         }
-        $this->permissions = [];
+        $this->reset('permissions');
     }
 
     public function submit(RoleRepositoryInterface $roleRepository)
     {
         $this->authorize('Role_edit');
-
+        // remove any Falsy values 'selected and then deselected permissions'
+         $this->permissions = collect($this->permissions)->reject( function($value) { 
+            return !$value;
+        });
         $validData = $this->validate();
         $success = $roleRepository->update($this->role->id, $validData);
         if($success){

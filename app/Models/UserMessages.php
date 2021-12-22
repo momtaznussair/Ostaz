@@ -26,6 +26,6 @@ class UserMessages extends Model
     * ckeck App\Repositories\SQL\Repository
     */
     public static  function filters() {
-        return ['isActive', 'isTrashed', 'Search', 'type'];
+        return ['isTrashed', 'Search', 'type'];
     }
 }

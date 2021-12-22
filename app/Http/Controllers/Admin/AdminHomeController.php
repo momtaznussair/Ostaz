@@ -55,7 +55,7 @@ class AdminHomeController extends Controller
                     return $this->random_color();
                 }),
                 'data' => $countries->map(function($country) use ($students){
-                    return (round($country->students->count() / $students->count() * 100));
+                    return (round($country->students_count / $students->count() * 100));
                 })->toArray()
             ],
         ])

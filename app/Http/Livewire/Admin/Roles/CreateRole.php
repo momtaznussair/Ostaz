@@ -24,21 +24,24 @@ class CreateRole extends Component
 
     protected $rules = [
         'name' => 'required|max:255|unique:roles,name',
-        'permissions' => 'required|exists:permissions,id',
+        'permissions' => 'required|array',
+        'permissions.*' => 'exists:permissions,id'
     ];
 
     public function toggleSelectAll($status)
     {
         if($status){
-            return $this->permissions = $this->allPermissions->pluck('id');
+            return $this->permissions = $this->allPermissions->pluck('id', 'id');
         }
-        $this->permissions = [];
+        $this->reset('permissions');
     }
-
     public  function submit(RoleRepositoryInterface $roleRepository)
     {
         $this->authorize('Role_create');
-
+        // remove any Falsy values 'selected and then deselected permissions'
+        $this->permissions = collect($this->permissions)->reject( function($value) { 
+            return !$value;
+        });
         $validData = $this->validate();
         $success = $roleRepository->add($validData);
         if($success){
