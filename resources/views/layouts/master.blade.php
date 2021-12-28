@@ -25,8 +25,6 @@
 			<div class="container-fluid">
 				@yield('page-header')
 				@yield('content')
-				@include('layouts.sidebar')
-				@include('layouts.models')
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')	
 	</body>

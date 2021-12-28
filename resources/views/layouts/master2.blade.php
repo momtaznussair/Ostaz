@@ -16,7 +16,7 @@
 		<div id="global-loader">
 			<img src="{{URL::asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
 		</div>
-		<div class="container pt-5">
+		<div class="container pt-5">s
 			@yield('content')
 		</div>
 		@include('layouts.footer')	
